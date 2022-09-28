@@ -14,10 +14,11 @@ const ProductSchema = new Schema({
 			images: [String],
 		},
 	],
+	generalImages: [String],
 	poster: String,
-	description: String,
-	ingredients: String,
-	howToUse: String,
+	description: [String],
+	ingredients: [String],
+	howToUse: [String],
 	commonlyAskedQuestions: [
 		{
 			Q: String,
@@ -25,7 +26,7 @@ const ProductSchema = new Schema({
 		},
 	],
 	reviews: [String],
-	availableOffers: [{ message: String, discount: String }],
+	availableOffers: [{ offerCode: String, discount: Number }],
 	isTrending: Boolean,
 	sellCount: Number,
 });
