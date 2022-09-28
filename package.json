@@ -15,6 +15,7 @@
     "@mui/material": "^5.10.7",
     "axios": "^0.27.2",
     "fast-two-sms": "^3.0.0",
+    "firebase": "^9.10.0",
     "mongoose": "^6.6.2",
     "next": "12.3.1",
     "react": "18.2.0",
