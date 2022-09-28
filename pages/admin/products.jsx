@@ -27,6 +27,7 @@ const initData = {
 	hasColor: false,
 	colors: [],
 	imagesByColors: [],
+	generalImages: [],
 	poster: "",
 	description: [],
 	ingredients: [],
@@ -91,11 +92,18 @@ const AddProduct = ({ categoriesData: categories, offersData: offers }) => {
 		}));
 	};
 
+	const pushGeneralImages = (images) => {
+		setProductData((prev) => ({
+			...prev,
+			generalImages: images,
+		}));
+	};
+
 	const postProductData = async () => {
 		let res = await axios.post(`${BASE_API_URL}/product/post`, productData);
+		console.log(res);
 		if (res.status === 201) {
 			alert("product added successfully!");
-			console.log(res);
 			setProductData(initData);
 		} else {
 			alert("some data is missing, please fill all the essential details!");
@@ -106,9 +114,9 @@ const AddProduct = ({ categoriesData: categories, offersData: offers }) => {
 		setColor("");
 	}, [productData.imagesByColors]);
 
-	// useEffect(() => {
-	// 	console.log(productData);
-	// }, [productData]);
+	useEffect(() => {
+		console.log(productData);
+	}, [productData]);
 
 	return (
 		<Container maxWidth="sm">
@@ -126,8 +134,11 @@ const AddProduct = ({ categoriesData: categories, offersData: offers }) => {
 				<Autocomplete
 					options={categories.map((c) => c.category.toUpperCase())}
 					freeSolo
-					// label="Category"
-					// name="category"
+					label="Category"
+					name="category"
+					onChange={(e, newValue) => {
+						handleChange({ target: { name: "category", value: newValue } });
+					}}
 					// variant="outlined"
 					renderInput={(params) => (
 						<TextField
@@ -136,7 +147,7 @@ const AddProduct = ({ categoriesData: categories, offersData: offers }) => {
 							label="Category"
 							name="category"
 							value={productData.category}
-							onChange={handleChange}
+							// onChange={handleChange}
 						/>
 					)}
 				/>
@@ -157,6 +168,19 @@ const AddProduct = ({ categoriesData: categories, offersData: offers }) => {
 					onChange={handleChange}
 				/>
 
+				{/* General images */}
+
+				<TextField
+					label="Provide the general image links in comma separated format."
+					onKeyDown={(e) => {
+						if (e.key === "Enter") {
+							if (e.target.value.length > 0) {
+								let images = e.target.value.split(",");
+								pushGeneralImages(images);
+							}
+						}
+					}}
+				/>
 				<FormGroup>
 					<FormControlLabel
 						control={

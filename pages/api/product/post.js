@@ -1,3 +1,5 @@
+import CategoryModel from "../../../models/category";
+import OfferModel from "../../../models/offers";
 import ProductModel from "../../../models/product";
 
 const handler = async (req, res) => {
@@ -13,7 +15,8 @@ const handler = async (req, res) => {
 		newPrice,
 		hasColor,
 		colors,
-		imagesByColors,
+		imagesByColor,
+		generalImages,
 		poster,
 		description,
 		ingredients,
@@ -24,10 +27,12 @@ const handler = async (req, res) => {
 		isTrending,
 		sellCount,
 	} = req.body;
+	// res.send(req.body);
 	if (
 		productName &&
 		category &&
 		newPrice &&
+		generalImages &&
 		poster &&
 		description &&
 		ingredients &&
@@ -41,7 +46,8 @@ const handler = async (req, res) => {
 			newPrice,
 			hasColor,
 			colors,
-			imagesByColors,
+			imagesByColor,
+			generalImages,
 			poster,
 			description,
 			ingredients,
@@ -52,6 +58,13 @@ const handler = async (req, res) => {
 			isTrending,
 			sellCount,
 		};
+		category = category.toLowerCase();
+		let categoryData = await CategoryModel.findOne({ category });
+		productData.category = categoryData._id;
+		let offersData = await OfferModel.find({
+			offerCode: { $in: availableOffers },
+		});
+		productData.availableOffers = offersData;
 		let product = ProductModel(productData);
 		await product.save();
 		return res.status(201).send(product);
