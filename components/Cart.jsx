@@ -16,8 +16,8 @@ const Cart = () => {
                 Why not add some products?
             </Box>
             <Box textAlign={"center"} mt="10px">
-            <Link href="/">
-                <Button variant="contained" >
+            <Link href="/" >
+                <Button variant="contained" sx={{backgroundColor:"black", color:"white"}}>
                 SHOP NOW
                 </Button>
             </Link>
