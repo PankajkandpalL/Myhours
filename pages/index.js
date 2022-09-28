@@ -1,8 +1,5 @@
+import Layout from "../component/Layout/Layout";
 
 export default function Home() {
-  return (
-    <div>
-      Main
-    </div>
-  )
-} 
+  return <Layout>hii this is data</Layout>;
+}

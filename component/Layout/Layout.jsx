@@ -5,11 +5,11 @@ import Navbar from "./Navbar/Navbar";
 
 const Layout = ({ children }) => {
   return (
-    <Container
+    <Box
       sx={{
         padding: 0,
         border: "1px solid red",
-        width: "100%",
+        // width: "100%",
         margin: "0",
       }}
       maxWidth={false}
@@ -17,7 +17,7 @@ const Layout = ({ children }) => {
       <Navbar />
       {children}
       <Footer />
-    </Container>
+    </Box>
   );
 };
 
