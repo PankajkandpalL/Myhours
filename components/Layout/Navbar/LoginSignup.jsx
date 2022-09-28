@@ -6,8 +6,9 @@ import { TableHead } from "@mui/material";
 
 const LoginSignup = () => {
   let auth = false;
+  // this auth will come from above components 
   let text = ["Login/Register"]
-  const [info, setInfo] = useState(auth)
+  const [info, setInfo] = useState("hii user")
   return (
     <Box
       border={"1px solid red"}
@@ -17,10 +18,15 @@ const LoginSignup = () => {
         justifyContent: " center",
       }}
       w={"100px"}
-    >
-         
-          <TableHead>
-            {text[info?0:1]}
+    >         
+          <TableHead 
+           sx={{
+            display :"flex",
+            justifyContent : "space-between",
+            minWidth : "90px",
+            alignItems : "center"
+          }}>
+            {auth? info : "Login/Register"}
           </TableHead>
         
       

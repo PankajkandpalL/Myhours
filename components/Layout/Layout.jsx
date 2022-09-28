@@ -8,17 +8,15 @@ const Layout = ({ children,logo }) => {
     <Box
       sx={{
         padding: 0,
-        border: "1px solid red",
+        // border: "1px solid red",
         margin: "0",
+        height : "100vh",
+        display : "flex",
+        flexDirection : "column"
       }}    
     >
       <Navbar logo={logo} />
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
+      
       {children}
       <Footer />
     </Box>

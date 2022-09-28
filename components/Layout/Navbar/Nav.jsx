@@ -1,5 +1,6 @@
 import { Box } from "@mui/system";
 import React from "react";
+import List from "./List";
 import LoginSignup from "./LoginSignup";
 import Logo from "./Logo";
 import Searchbox from "./Searchbox";
@@ -20,12 +21,11 @@ const Nav = ({ logo }) => {
      {/* search box */}
       <Searchbox />
 
-{/* LoginSignup here  */}
- <LoginSignup /> 
+LoginSignup here 
+ {/* <LoginSignup />  */}
 
-
-      <p></p>
-      wishlist bag offers switch button
+<List />
+      {/* wishlist bag offers switch button */}
     </Box>
   );
 };

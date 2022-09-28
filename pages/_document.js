@@ -1,21 +1,22 @@
 import { Html, Head, Main, NextScript } from 'next/document'
+import { useState } from 'react'
 // import favicon from "../public/"
 export default function Document() {
 
-  let title = [
-  "Buy Beauty Products at SUGAR Cosmetics Online Store", //home
-  "SUGAR Makeup: Buy Makeup Products Online in India | SUGAR Cosmetics", //
-  // "Makeup Brushes: Buy SUGAR Makeup Brushes Online in India | SUGAR Cosmetics",
-  "SUGAR Cosmetics - Account",
-  "SUGAR Cosmetics - Wishlist",
-  "SUGAR Cosmetics - Cart"
-  ]
-  let pageroute = [
-    "/","/product","/product","/account","wishlist","cart"
-  ]
+//   let title = [
+//   "Buy Beauty Products at SUGAR Cosmetics Online Store", //home
+//   "SUGAR Makeup: Buy Makeup Products Online in India | SUGAR Cosmetics", //
+//   // "Makeup Brushes: Buy SUGAR Makeup Brushes Online in India | SUGAR Cosmetics",
+//   "SUGAR Cosmetics - Account",
+//   "SUGAR Cosmetics - Wishlist",
+//   "SUGAR Cosmetics - Cart"
+//   ]
+//   let pageroute = [
+//     "/","/product","/product","/account","wishlist","cart"
+//   ]
 
 
-const [first, setfirst] = useState(0)
+// const [first, setfirst] = useState(0)
 
 
 
