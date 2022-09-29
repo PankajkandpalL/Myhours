@@ -1,4 +1,5 @@
 import CategoryModel from "../../../models/category";
+import ImagesByColorModel from "../../../models/imagesByColor";
 import OfferModel from "../../../models/offers";
 import ProductModel from "../../../models/product";
 
@@ -34,10 +35,7 @@ const handler = async (req, res) => {
 		newPrice &&
 		generalImages &&
 		poster &&
-		description &&
-		ingredients &&
-		howToUse &&
-		commonlyAskedQuestions
+		description
 	) {
 		let productData = {
 			productName,
