@@ -10,11 +10,11 @@ const handler = async (req, res) => {
 			message: `${req.method} is not supported on this route`,
 		});
 	}
-	let {category} = req.query;
+	let { category } = req.query;
 	// res.send({category});
 	if (!category) {
 		return res.status(404).send({
-			message: "Category is missing in body",
+			message: "Category is missing in params",
 		});
 	}
 	try {
