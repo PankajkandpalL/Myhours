@@ -6,11 +6,12 @@ import Topfooter from './Topfooter'
 const Footer = () => {
   return (
     <Box sx={{
-      position : "absolute",
+      position : "relative",
       // backgroundColor : "black",
       bottom : 0,
       left :0,
-      right : 0
+      right : 0,
+      zIndex : -1
     }}>
 <Topfooter />
 <Bottomfooter />

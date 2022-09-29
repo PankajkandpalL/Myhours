@@ -1,5 +1,6 @@
 import { Box, Button, Divider, TableHead, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
+import Headline from "../../Headline/Headline";
 
 const Topfooter = () => {
   let msg = [
@@ -42,8 +43,8 @@ const [appearvalue, setAppearvalue] = useState('red')
     >
       <Typography
         sx={{
-          //   border: "1px solid red",
-          width: "fit-content",
+            // border: "1px solid red",    
+            width : "490px",
           margin: "auto",
           fontFamily: "Roboto, sans-serif",
           fontSize: "24px",
@@ -52,9 +53,9 @@ const [appearvalue, setAppearvalue] = useState('red')
           marginY: 1,
         }}
       >
- 
+ <Headline color={'#212121'}>
         LET’S STAY IN TOUCH
-      
+        </Headline>
       </Typography>
       
       <Typography
