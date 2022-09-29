@@ -1,22 +1,33 @@
-import { Box } from '@mui/system'
-import React from 'react'
-import Searchbox from './Searchbox'
+import { Box } from "@mui/system";
+import React from "react";
+import List from "./List";
+import LoginSignup from "./LoginSignup";
+import Logo from "./Logo";
+import Searchbox from "./Searchbox";
 
-const Nav = () => {
-  return (
-  <Box>
- {/* logo */}
+const Nav = ({ logo }) => {
  
- {/* search icon */}
-<Searchbox />
- {/* login sign in setup */}
+  return (
+    <Box
+      sx={{
+        backgroundColor: "black",
+        display: "flex",
+        justifyContent: "space-evenly",
+        py: 2,
+        borderTop: "0.6px solid grey",
+      }}
+    >
+     <Logo logo={logo} />
+     {/* search box */}
+      <Searchbox />
 
- {/* wishlist bag offers switch button */}
+LoginSignup here 
+ {/* <LoginSignup />  */}
 
+<List />
+      {/* wishlist bag offers switch button */}
+    </Box>
+  );
+};
 
-
-  </Box>
-    )
-}
-
-export default Nav
+export default Nav;
