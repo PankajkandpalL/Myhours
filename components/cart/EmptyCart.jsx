@@ -2,7 +2,7 @@ import React from 'react'
 import { Box, Button } from "@mui/material"
 import Link from 'next/link'
 
-const Cart = () => {
+const EmptyCart = () => {
   return (
     <Box backgroundColor="#f2f2f2" padding="2rem" >
         <Box backgroundColor="white" borderRadius={"10px"} padding={"1rem"} alignContent="center" display={"flex"} justifyContent="center">
@@ -27,4 +27,4 @@ const Cart = () => {
     </Box>
   )
 }
-export default Cart;
+export default EmptyCart;
