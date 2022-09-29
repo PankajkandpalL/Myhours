@@ -30,6 +30,8 @@ const CartPage = () => {
     gap="20px">
     {/* Box 1----> */}
     <Box  >
+
+        {/* BONUS OFFERS----> */}
         <Box>
         <Accordion sx={{backgroundColor:"#f2f2f2"}} >
         <AccordionSummary
@@ -41,17 +43,21 @@ const CartPage = () => {
         </AccordionSummary>
         <AccordionDetails>
           <Box>
-            <Box display={"flex"} gap="10px" >
-              {/* img----> */}
+            <Box display={"flex"} gap="120px" >
+              <Box display={"flex"} gap="10px" >
+
+                {/* Product img----> */}
               <Box> <img src={"https://media.sugarcosmetics.com/upload/Gifting.jpg"} width="42" height="58"/></Box>
-              {/* details------> */}
+              
+              {/* Product details------> */}
               <Box>
-                <span>Matte As Hell Crayon Mini Lipstick - 12 Baby Houseman</span><br />
-                <span><strike>₹599</strike> ₹199</span>
+                <span style={{fontSize:"13px"}}>Matte As Hell Crayon Mini Lipstick - 12 Baby Houseman</span><br />
+                <Typography mt="10px"><strike>₹599</strike> ₹199</Typography>
+              </Box>
               </Box>
                 {/* Showping button----> */}
               <Box>
-              <Button  variant="contained" sx={{backgroundColor:"black", color:"white"}}>Add to Cart</Button>
+              <Button  variant="contained" sx={{backgroundColor:"black", color:"white",textIndent:"0px"}}>Add to Cart</Button>
               </Box>
             </Box>
           </Box>
@@ -72,10 +78,10 @@ const CartPage = () => {
                             {/* details------> */}
                             <Box >
                                 <Box>
-                                <span>Matte Attack Transferproof Lipstick</span><br />
+                                <span style={{fontSize:"13px"}}>Matte Attack Transferproof Lipstick</span><br />
                                 </Box>
                                 <Box display={"flex"} justifyContent="space-between" mt="8px">
-                                    <span>₹199</span>
+                                    <b>₹199</b>
             
                                         {/* Responsive BUTTON----> */}
                                         <Box display={{ xs: "flex",lg:"none" }} gap="50px"> 
@@ -100,7 +106,7 @@ const CartPage = () => {
                         </Box>
 
                         {/* cart button----> */}
-                        <Box display={{ xs: "none",lg:"flex" }} gap="50px">
+                        <Box display={{ xs: "none",lg:"flex" }} gap="20px">
 
                         {/* Delete button---> */}
                         <Box mt="7px">
@@ -158,7 +164,7 @@ const CartPage = () => {
         <AccordionDetails>
           <Box>
 
-            {/* Map data Start----> */}
+            {/* Map Offer data Start----> */}
             <Box>
               <Box display="flex" justifyContent={"space-between"}>
                 <b>MINI MAGIC</b>
