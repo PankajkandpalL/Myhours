@@ -3,12 +3,15 @@ import CategoryModel from "../../../models/category";
 import ProductModel from "../../../models/product";
 
 const handler = async (req, res) => {
+	// console.log(req);
+	// return res.send(req.params);
 	if (req.method !== "GET") {
 		return res.status(403).send({
 			message: `${req.method} is not supported on this route`,
 		});
 	}
-	let { category } = req.body;
+	let {category} = req.query;
+	// res.send({category});
 	if (!category) {
 		return res.status(404).send({
 			message: "Category is missing in body",
