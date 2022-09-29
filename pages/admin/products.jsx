@@ -26,7 +26,7 @@ const initData = {
 	newPrice: 0,
 	hasColor: false,
 	colors: [],
-	imagesByColors: [],
+	imagesByColor: [],
 	generalImages: [],
 	poster: "",
 	description: [],
@@ -87,7 +87,7 @@ const AddProduct = ({ categoriesData: categories, offersData: offers }) => {
 	const pushImagesWithColors = (images, color) => {
 		setProductData((prev) => ({
 			...prev,
-			imagesByColors: [...prev.imagesByColors, { color, images }],
+			imagesByColor: [...prev.imagesByColor, { color, images }],
 			colors: [...prev.colors, color],
 		}));
 	};
@@ -112,11 +112,7 @@ const AddProduct = ({ categoriesData: categories, offersData: offers }) => {
 
 	useEffect(() => {
 		setColor("");
-	}, [productData.imagesByColors]);
-
-	useEffect(() => {
-		console.log(productData);
-	}, [productData]);
+	}, [productData.imagesByColor]);
 
 	return (
 		<Container maxWidth="sm">
