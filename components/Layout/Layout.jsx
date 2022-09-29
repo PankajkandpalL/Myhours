@@ -3,18 +3,20 @@ import React from "react";
 import Footer from "./Footer/Footer";
 import Navbar from "./Navbar/Navbar";
 
-const Layout = ({ children }) => {
+const Layout = ({ children,logo }) => {
   return (
     <Box
       sx={{
         padding: 0,
-        border: "1px solid red",
-        // width: "100%",
+        // border: "1px solid red",
         margin: "0",
-      }}
-      maxWidth={false}
+        height : "100vh",
+        display : "flex",
+        flexDirection : "column"
+      }}    
     >
-      <Navbar />
+      <Navbar logo={logo} />
+      
       {children}
       <Footer />
     </Box>

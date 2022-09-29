@@ -1,19 +1,18 @@
-import { Box, Container } from '@mui/material'
+import { Box } from '@mui/material'
 import React, { useState } from 'react'
 import Nav from './Nav'
 import Topbar from './Topbar'
 
-const Navbar = () => {
+const Navbar = ({logo}) => {
   // topbar hide or show 
 const [showbar, setShowbar] = useState(true)
 
   return (
-    <Container
-    maxWidth={false}
+    <Box    
     position={"fixed"}
     sx={
       {
-        // backgroundColor: "black",
+       
         width : "100%",
         color: "white"
       }
@@ -21,11 +20,11 @@ const [showbar, setShowbar] = useState(true)
       
       {showbar && <Topbar showbar={showbar} setShowbar={setShowbar} />}
       <Box>
-        <Nav />
+        <Nav logo={logo}/>
         <Box>categorybox</Box>
       </Box>
       
-      </Container>
+      </Box>
   )
 }
 
