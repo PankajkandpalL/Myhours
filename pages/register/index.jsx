@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { useEffect, useState } from "react";
 import { app } from "../../utils/firebase";
 import { getAuth, RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
+import { useRouter } from 'next/router'
 import axios from 'axios'
 
 const src = "https://media.sugarcosmetics.com/upload/authSIe2.jpg"
@@ -14,7 +15,48 @@ export default function Login(){
     const [Number, setNumber] = useState("")
     const [otp, setOtp] = useState("")
     const [ toggle, setToggle ] = useState(false)
- 
+    const [ message, setMessage ] = useState(false)
+    const [ userObj, setUserObj ] = useState({
+        first : "",
+        last : "",
+        email : ""
+    })
+
+    const handleUser = (e) =>  {
+        
+        let { name, value } = e.target
+
+        setUserObj({
+            ...userObj,
+            [name] : value
+        })
+
+    }
+
+    const createUser = async() => {
+
+        let obj = { 
+            username : `${userObj.first} ${userObj.last}`,
+            email : userObj.email,
+            id : localStorage.getItem('userId')
+         }
+
+         try{
+
+            let data = await axios.post('http://localhost:3000/api/registration/user', obj)
+            localStorage.setItem("message", data.data.message)
+            localStorage.setItem("token", JSON.stringify(data.data.token))
+            localStorage.removeItem("userId")
+            router.replace("/")
+         }
+         catch(e){
+            console.log(e)
+         }
+
+     }
+
+    const router = useRouter()
+
     let configureCaptcha = () => {
 
         const auth = getAuth()
@@ -51,9 +93,20 @@ export default function Login(){
 
         try{
 
-            let data = await axios.post('http://localhost/3000/api/registration/signUp', obj)
+            let data = await axios.post('http://localhost:3000/api/registration/mobile', obj)
             
-            console.log(data)
+            if(data.data.message=="Created Successfully!")
+            {
+                localStorage.setItem("message", data.data.message)
+                localStorage.setItem("userId", data.data.user)
+                setMessage(true)
+            }
+            else
+            {
+                localStorage.setItem("message", data.data.message)
+                localStorage.setItem("token", JSON.stringify(data.data.token))
+                router.replace("/")
+            }
 
         }
         catch(e){
@@ -61,6 +114,15 @@ export default function Login(){
         }
 
     }
+
+    useEffect(()=>{
+        let m = localStorage.getItem('message')
+        console.log(m)
+        if(m==="Created Successfully!")
+        {
+            setMessage(true)
+        }
+    },[message])
 
     let onSubmitOTP = () => {
         const code = otp
@@ -88,140 +150,212 @@ export default function Login(){
                 width: "1000px",
                 backgroundImage : `url(${'https://media.sugarcosmetics.com/upload/loginPageBackGroundTexture.png'})`
             }} >
-                <Box sx={{
-                    marginTop : "100px",
-                    display : "flex",
-                    justifyContent : "center",
-                    alignItems : "center"
-                }} >
-                    <Image loader={()=>hiSrc} src={hiSrc} alt="hiIcon" width={172.9} height={114} />
-                </Box>
-                <Box sx={{
-                    marginTop : "10px",
-                    display : "flex",
-                    justifyContent : "center",
-                    alignItems : "center",
-                    fontSize : "18px"
-                }} >
-                    <p style={{ fontSize :"18px" , fontFamily : "sans-serif" }} >Login/Sign Up Using Phone</p>
-                </Box>
-                <Box sx={{
-                    marginTop : "10px",
-                    display : "flex",
-                    justifyContent : "center",
-                    alignItems : "center",
-                }}>
-                    {
-                        !toggle
-                        ?
-                        <TextField
-                            label="Enter Mobile Number"
-                            id="outlined-start-adornment"
-                            sx={{ m: 1, width: '382px' }}
-                            onChange={(e)=>setNumber(e.target.value)}
-                            InputProps={{
-                                startAdornment: <InputAdornment position="start">+91 </InputAdornment>,
-                            }}
-                        />
-                        :
-                        <TextField id="outlined-basic" label="Enter OTP"  sx={{ m: 1, width: '382px' }} variant="outlined" onChange={(e)=>setOtp(e.target.value)} />
-                    }
-                </Box>
-                <Box sx={{
-                    marginTop : "12px",
-                    display : "flex",
-                    justifyContent : "center",
-                    alignItems : "center",
-                }}>
-                    <p style={{ color: "#757575", width: "740px", height : "66px", fontFamily: "sans-serif", fontSize :"13px", textAlign : "center" }} >Registering for this site allows you to access your order status and history. Just fill in the above fields, and we'll get a new account set up for you in no time. We will only ask you for information necessary to make the purchase process faster and easier.</p>
-                </Box>
-                <Box sx={{
-                    marginTop : "60px",
-                    display : "flex",
-                    justifyContent : "center",
-                    alignItems : "center",
-                }} >
-                    <div id="sign-in-button"></div>
-                     {
-                        !toggle
-                        ?
-                        <Button variant="contained" disabled={ Number.length === 10 ? false : true } sx={{
-                            fontSize : "13px",
-                            color : "white"
-                        }} onClick={()=>{
-                            onSignInSubmit()
+                {
+                    !message 
+                    ?
+                    <>
+                    <Box sx={{
+                        marginTop : "100px",
+                        display : "flex",
+                        justifyContent : "center",
+                        alignItems : "center"
+                    }} >
+                        <Image loader={()=>hiSrc} src={hiSrc} alt="hiIcon" width={172.9} height={114} />
+                    </Box>
+                    <Box sx={{
+                        marginTop : "10px",
+                        display : "flex",
+                        justifyContent : "center",
+                        alignItems : "center",
+                        fontSize : "18px"
+                    }} >
+                        <p style={{ fontSize :"18px" , fontFamily : "sans-serif" }} >Login/Sign Up Using Phone</p>
+                    </Box>
+                    <Box sx={{
+                        marginTop : "10px",
+                        display : "flex",
+                        justifyContent : "center",
+                        alignItems : "center",
+                    }}>
+                        {
+                            !toggle
+                            ?
+                            <TextField
+                                label="Enter Mobile Number"
+                                id="outlined-start-adornment"
+                                sx={{ m: 1, width: '382px' }}
+                                onChange={(e)=>setNumber(e.target.value)}
+                                InputProps={{
+                                    startAdornment: <InputAdornment position="start">+91 </InputAdornment>,
+                                }}
+                            />
+                            :
+                            <TextField id="outlined-basic" label="Enter OTP"  sx={{ m: 1, width: '382px' }} variant="outlined" onChange={(e)=>setOtp(e.target.value)} />
+                        }
+                    </Box>
+                    <Box sx={{
+                        marginTop : "12px",
+                        display : "flex",
+                        justifyContent : "center",
+                        alignItems : "center",
+                    }}>
+                        <p style={{ color: "#757575", width: "740px", height : "66px", fontFamily: "sans-serif", fontSize :"13px", textAlign : "center" }} >Registering for this site allows you to access your order status and history. Just fill in the above fields, and we'll get a new account set up for you in no time. We will only ask you for information necessary to make the purchase process faster and easier.</p>
+                    </Box>
+                    <Box sx={{
+                        marginTop : "60px",
+                        display : "flex",
+                        justifyContent : "center",
+                        alignItems : "center",
+                    }} >
+                        <div id="sign-in-button"></div>
+                        {
+                            !toggle
+                            ?
+                            <Button variant="contained" disabled={ Number.length === 10 ? false : true } sx={{
+                                fontSize : "13px",
+                                color : "white"
+                            }} onClick={()=>{
+                                onSignInSubmit()
+                            }}>
+                                Send ME OTP
+                            </Button>
+                            :
+                            <Button variant="contained" disabled={ otp.length === 6 ? false : true } sx={{
+                                fontSize : "13px",
+                                color : "white"
+                            }} onClick={()=>{
+                                onSubmitOTP()
+                                addUser()
+                            }}>
+                                VALIDATE THIS
+                            </Button>
+                        }
+                    </Box>
+                    <Box sx={{
+                        margin : "auto",
+                        marginTop : "10px",
+                        display : "flex",
+                        justifyContent : "center",
+                        alignItems : "center",
+                        color : "gray",
+                        border : "1px dashed gray",
+                        marginBottom : "10px",
+                        borderBottom : "none",
+                        width : "95%" 
+                    }} >
+                    </Box>
+                    <Box sx={{
+                        marginTop : "-10px",
+                        display : "flex",
+                        justifyContent : "center",
+                        alignItems : "center",
+                    }} >
+                        <Checkbox defaultChecked size="small" />
+                        <span style={{ fontFamily : "sans-serif", fontSize : "12px", color : "gray" }} > Get important updates on Whatsapp <span style={{color : "red"}} > Terms and Conditions </span> </span>
+                    </Box>
+                    <Box sx={{
+                        marginTop : "40px",
+                        display : "flex",
+                        justifyContent : "right",
+                        width :"96%",
+                        alignItems : "right",
+                        fontFamily : "sans-serif",
+                        fontSize : "13px"
+                    }}>
+                        Need Help? <span style={{ color : "red" }} > Contact Us</span>
+                    </Box>
+                    <Box sx={{
+                        margin : "auto",
+                        marginTop : "10px",
+                        marginBottom : "10px",
+                        display : "flex",
+                        justifyContent : "center",
+                        alignItems : "center",
+                        color : "gray",
+                        border : "1px dashed gray",
+                        borderBottom : "none",
+                        width : "95%"                    
+                    }} >
+                        
+                    </Box>
+                    <Box sx={{
+                        marginTop : "0px",
+                        display : "flex",
+                        justifyContent : "center",
+                        alignItems : "center",
+                        fontFamily : "sans-serif", 
+                        fontSize : "12px"
+                    }}>
+                        By Signing up or logging in, you agree to our &nbsp; <span style={{color : "red"}} >Terms and Conditions</span>
+                    </Box>
+                    </>
+                    :
+                    <Box>
+                        <Box sx={{ width : "391px", height : "19px", fontSize : "16px", margin: "auto", marginTop : "120px", fontWeight : "bold" , fontFamily : "sans-serif", display : "flex", justifyContent : "center", alignItems : "center" }} >
+                            Please fill this form below
+                        </Box>
+                        <Box sx={{marginTop : "10px"}} >
+                            <Box  sx={{
+                            marginTop : "0px",
+                            display : "flex",
+                            justifyContent : "center",
+                            alignItems : "center",                       
+                        }} >
+                                <TextField onChange={(e)=>handleUser(e)} name="first" sx={{ m: 1, width: '362px' }} required id="outlined-basic" label="First Name" variant="outlined" />
+                            </Box>
+                            <Box  sx={{
+                            marginTop : "0px",
+                            display : "flex",
+                            justifyContent : "center",
+                            alignItems : "center",                        
+                        }} >
+                                <TextField onChange={(e)=>handleUser(e)} name="last" sx={{ m: 1, width: '362px' }} required id="outlined-basic" label="Last Name" variant="outlined" />
+                            </Box>
+                            <Box  sx={{
+                            marginTop : "0px",
+                            display : "flex",
+                            justifyContent : "center",
+                            alignItems : "center",                        
+                        }} >
+                                <TextField onChange={(e)=>handleUser(e)} name="email" sx={{ m: 1, width: '362px' }} required id="outlined-basic" label="Enter Email Id" variant="outlined" />
+                            </Box>
+                        </Box>
+                        <Box sx={{
+                            marginTop : "10px",
+                            display : "flex",
+                            justifyContent : "center",
+                            alignItems : "center"
                         }}>
-                            Send ME OTP
-                        </Button>
-                        :
-                        <Button variant="contained" disabled={ otp.length === 6 ? false : true } sx={{
-                            fontSize : "13px",
-                            color : "white"
-                        }} onClick={()=>{
-                            onSubmitOTP()
-                            addUser()
+                            <Button onClick={()=>createUser()} variant="contained" disabled={ false } sx={{
+                                    fontSize : "14px",
+                                    color : "white",
+                                    height : "50px",
+                                    width : "126px",
+                                    borderRadius : "9px",
+                                    backgroundColor : "black"
+                                }}>
+                                SIGN ME UP
+                            </Button>
+                        </Box>
+                        <Box sx={{ width : "362px", margin : "auto", marginTop : "25px", marginBottom : "25px", display : "flex", alignItems : "center", justifyContent :"space-evenly" }} >
+                            <Box sx={{ border : "1px dashed gray", width : "45%", borderBottom : "none" }} >
+                            </Box>
+                            <Box sx={{color : "gray", fontFamily : "sans-serif", fontSize : "13px"}} >
+                                OR
+                            </Box>
+                            <Box sx={{ border : "1px dashed gray", width : "45%", borderBottom : "none" }} >
+                            </Box>
+                        </Box>
+                        <Box sx={{
+                            marginTop : "10px",
+                            display : "flex",
+                            justifyContent : "center",
+                            alignItems : "center",
                         }}>
-                            VALIDATE THIS
-                        </Button>
-                    }
-                </Box>
-                <Box sx={{
-                     margin : "auto",
-                     marginTop : "10px",
-                     display : "flex",
-                     justifyContent : "center",
-                     alignItems : "center",
-                     color : "gray",
-                     border : "1px dashed gray",
-                     marginBottom : "10px",
-                     borderBottom : "none",
-                     width : "95%" 
-                }} >
-                </Box>
-                <Box sx={{
-                    marginTop : "-10px",
-                    display : "flex",
-                    justifyContent : "center",
-                    alignItems : "center",
-                }} >
-                    <Checkbox defaultChecked size="small" />
-                    <span style={{ fontFamily : "sans-serif", fontSize : "12px", color : "gray" }} > Get important updates on Whatsapp <span style={{color : "red"}} > Terms and Conditions </span> </span>
-                </Box>
-                <Box sx={{
-                    marginTop : "40px",
-                    display : "flex",
-                    justifyContent : "right",
-                    width :"96%",
-                    alignItems : "right",
-                    fontFamily : "sans-serif",
-                    fontSize : "13px"
-                }}>
-                    Need Help? <span style={{ color : "red" }} > Contact Us</span>
-                </Box>
-                <Box sx={{
-                    margin : "auto",
-                    marginTop : "10px",
-                    marginBottom : "10px",
-                    display : "flex",
-                    justifyContent : "center",
-                    alignItems : "center",
-                    color : "gray",
-                    border : "1px dashed gray",
-                    borderBottom : "none",
-                    width : "95%"                    
-                }} >
-                    
-                </Box>
-                <Box sx={{
-                    marginTop : "0px",
-                    display : "flex",
-                    justifyContent : "center",
-                    alignItems : "center",
-                    fontFamily : "sans-serif", 
-                    fontSize : "12px"
-                }}>
-                    By Signing up or logging in, you agree to our &nbsp; <span style={{color : "red"}} >Terms and Conditions</span>
-                </Box>
+                            <Button variant="contained">Continue With Gmail</Button>
+                        </Box>
+                    </Box>
+                }
             </Box>
        </Box>
     )
