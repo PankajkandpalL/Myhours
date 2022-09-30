@@ -16,12 +16,13 @@ const Headline = ({ children, color }) => {
         zIndex={0}
       ></Box>
       <Divider
+       fontSize={{xs : "18px" , sm : "20px" ,md : "20px", lg : "20px" }}
+       lineHeight={{ xs : "22px", sm : '28px', md : "28px", lg : "28px"}}
         sx={{
           // width : "20%",
-          fontWeight: 900,
-          lineHeight: "28px",
+          fontWeight: 900,          
           color: color,
-          fontSize: "20px",
+         
           letterSpacing: "1px",
           fontFamily: "Roboto",
           zindex: 100,
