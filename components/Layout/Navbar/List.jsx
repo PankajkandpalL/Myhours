@@ -1,6 +1,7 @@
 import { Box } from '@mui/material'
 import React from 'react'
-import { AiOutlineHeart,FaBeer } from 'react-icons/fa';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+
 
 const List = () => {
   return (
@@ -16,7 +17,7 @@ const List = () => {
 
 <FaBeer />
 <FaBeer /> */}
-wishlist ---
+<FavoriteBorderIcon/> ---
 bag ----offers
     </Box>
   )
