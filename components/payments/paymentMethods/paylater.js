@@ -3,7 +3,7 @@ import RadioSelect from './common/radioSelect';
 import React from 'react';
 import ButtonEl from './common/button';
 
-export default function Paylater({amount='598.00'}){
+export default function Paylater({amount}){
     const [selectedValue, setSelectedValue] = React.useState(null);
     const props = {selectedValue, setSelectedValue};
     return (
@@ -16,7 +16,7 @@ export default function Paylater({amount='598.00'}){
                 <Box sx={{width:"70%"}}><RadioSelect {...props} image={'https://www.logotaglines.com/wp-content/uploads/2016/08/ICICI-Logo.png'} text={'ICICI'} /></Box>
                 <Box sx={{width:"70%"}}><RadioSelect {...props} image={'https://w7.pngwing.com/pngs/636/81/png-transparent-hdfc-thumbnail-bank-logos-thumbnail.png'} text={'HDFC'} /></Box>
             </Box>
-            <ButtonEl amount={amount} disabled={selectedValue}/>
+            <ButtonEl amount={amount} disabled={!selectedValue}/>
         </Box>
     )
 }
