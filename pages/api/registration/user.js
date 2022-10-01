@@ -10,13 +10,14 @@ export default async function handler (req,res) {
         });
     }  
 
+
     let { username, email, id } = req.body
 
     try{
 
         await dbConnect()
         
-        let data = await User.findByIdAndUpdate(id, { username : username, email : email })
+        await User.findByIdAndUpdate(id, { username : username, email : email })
         let userExists = await User.findById(id)
         
         let accessToken = jwt.sign({ id : userExists._id, email : userExists.email, name : userExists.username, mobile : userExists.mobile }, "ACCESSSECRET1234", { expiresIn : "7 days" } )
