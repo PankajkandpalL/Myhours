@@ -9,11 +9,20 @@ import {BiPlus,BiMinus} from "react-icons/bi"
 import {TbDiscount2} from "react-icons/tb"
 import React from 'react'
 import EmptycaCart from "../../components/cart/EmptyCart";
+import Script from 'next/script'
+// import styles from '../../styles/Home.module.css'
 
+// Add this wherever you render your code...
 
 const CartPage = () => {
+
+
+
   return (
     <Box>
+      <Script src="https://code.jquery.com/jquery-3.2.1.min.js">
+      </Script>
+      
     <Box backgroundColor="#f2f2f2" padding="1rem"  >
 
       {/* Empty Cart---> */}
@@ -33,7 +42,7 @@ const CartPage = () => {
 
         {/* BONUS OFFERS----> */}
         <Box>
-        <Accordion sx={{backgroundColor:"#f2f2f2"}} >
+      <Accordion sx={{backgroundColor:"#f2f2f2"}} >
         <AccordionSummary
           expandIcon={<IoIosArrowDown/>}
           aria-controls="panel1a-content"
@@ -211,7 +220,8 @@ const CartPage = () => {
     {/* Fix Total amount Box-----> */}
 
   {/* <Box 
-  // border="solid" 
+  // border="solid"
+  // className={styles.box}
   position={"fixed"} 
   backgroundColor="white" 
   top='83%'  
@@ -222,7 +232,10 @@ const CartPage = () => {
     variant="contained"
     sx={{backgroundColor:"black",padding:"1rem",color:"white",position:"relative",right:"50px",top:"30px",fontSize:"17px"}} >
     <b >₹1247.00 PLACE ORDER</b></Button>
-  </Box> */}
+  </Box>
+  <footer>
+    I am a footer
+  </footer> */}
 
   </Box>
   )

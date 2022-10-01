@@ -9,7 +9,6 @@ const cartSchema = new Schema({
 
 })
 
-
 const CartModel = models.cart || model('cart', cartSchema)
 
 export default CartModel
