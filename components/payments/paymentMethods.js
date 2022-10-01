@@ -9,7 +9,7 @@ import Payondelivery from './paymentMethods/payondelivery';
 import Upi from './paymentMethods/upi';
 import Wallets from './paymentMethods/wallets';
 
-export default function PaymentMethods(){
+export default function PaymentMethods({amount}){
     const [paymentMethod, setPaymentMethod] = React.useState("upi");
     return (
         <Box p='20px'>
@@ -30,14 +30,14 @@ export default function PaymentMethods(){
                             </Box>
                         </Grid>
                         <Grid item xs={3} sm={5} md={7}>
-                            {paymentMethod==="upi" && <Upi/>}
-                            {paymentMethod==="cards" && <Cards/>}
-                            {paymentMethod==="paylater" && <Paylater/>}
-                            {paymentMethod==="cardlessemi" && <Cardlessemi/>}
-                            {paymentMethod==="cred" && <Cred/>}
-                            {paymentMethod==="wallets" && <Wallets/>}
-                            {paymentMethod==="netbanking" && <Netbanking/>}
-                            {paymentMethod==="payondelivery" && <Payondelivery/>}                                
+                            {paymentMethod==="upi" && <Upi amount={amount}/>}
+                            {paymentMethod==="cards" && <Cards amount={amount}/>}
+                            {paymentMethod==="paylater" && <Paylater amount={amount}/>}
+                            {paymentMethod==="cardlessemi" && <Cardlessemi amount={amount}/>}
+                            {paymentMethod==="cred" && <Cred amount={amount}/>}
+                            {paymentMethod==="wallets" && <Wallets amount={amount}/>}
+                            {paymentMethod==="netbanking" && <Netbanking amount={amount}/>}
+                            {paymentMethod==="payondelivery" && <Payondelivery amount={amount}/>}                                
                                 
                         </Grid>
                     </Grid>

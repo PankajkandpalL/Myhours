@@ -1,7 +1,7 @@
 import {Box, Typography,Button} from '@mui/material';
 import ButtonEl from './common/button';
 
-export default function Payondelivery({amount='598.00'}){
+export default function Payondelivery({amount}){
     return (
         <Box sx={{display:'flex',flexDirection:'column',gap:'15px'}}>
             <Box sx={{display:"flex",gap:'10px',color:'#7a7a7a'}} >
@@ -9,7 +9,7 @@ export default function Payondelivery({amount='598.00'}){
                 <Typography sx={{color:'#6d6d6d'}}>Cash On Delivery</Typography>
             </Box>
             <Box><Typography sx={{color:'#7a7a7a',fontSize:12}}>We recommend using a digital payment method for completing the payment</Typography></Box>
-            <ButtonEl amount={amount}/>
+            <ButtonEl amount={amount} />
         </Box>
     )
 }

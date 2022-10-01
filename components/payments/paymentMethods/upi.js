@@ -2,7 +2,7 @@ import {Box, Typography, TextField, Button} from '@mui/material';
 import ButtonEl from './common/button';
 import React from 'react';
 
-export default function Upi({amount='598.00'}){
+export default function Upi({amount}){
     const [upiId,setUpiId] = React.useState("");
     return (
         <Box variant='h5' component='h5' sx={{display:'flex',flexDirection:'column',gap:'10px'}}>
@@ -16,7 +16,7 @@ export default function Upi({amount='598.00'}){
                 <Typography fontSize={12}>{"& more"}</Typography>
             </Box>
             <Box>
-                <TextField onChange={(e)=>setUpiId(e.target.value)}  variant="outlined" name="upiid" value={upiId} label='Enter UPI ID' sx={{m:1}}/>
+                <TextField onChange={(e)=>setUpiId(e.target.value)}  variant="outlined" name="upiid" value={upiId} label='Enter UPI ID' sx={{m:1}} required/>
             </Box>
             <ButtonEl amount={amount}  disabled={upiId === ""}/>
         </Box>
