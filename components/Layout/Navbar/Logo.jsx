@@ -20,9 +20,7 @@ const Logo = ({logo}) => {
         }}
       >
         <Image
-          style={{
-            border: "1px solid red",
-          }}
+          
           width={"50%"}
           height={"50%"}
           src={logo}
