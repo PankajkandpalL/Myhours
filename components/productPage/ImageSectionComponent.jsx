@@ -1,6 +1,6 @@
 import { Box, Button, Icon, IconButton, Stack } from "@mui/material";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AiOutlineDown, AiOutlineUp } from "react-icons/ai";
 
 const ImageSectionComponent = ({ images }) => {
@@ -23,6 +23,10 @@ const ImageSectionComponent = ({ images }) => {
 			end: prev.end - 4,
 		}));
 	};
+
+	useEffect(() => {
+		setSelectedImage(images[0]);
+	}, [images]);
 
 	return (
 		<Stack
@@ -63,7 +67,6 @@ const ImageSectionComponent = ({ images }) => {
 			<Box>
 				<Image src={selectedImage} width={256} height={256} />
 			</Box>
-			{/* <Typography>Individual Image</Typography> */}
 		</Stack>
 	);
 };
