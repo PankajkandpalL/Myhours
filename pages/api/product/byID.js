@@ -1,4 +1,3 @@
-import dbConnect from "../../../lib/mongodbConnect";
 import ProductModel from "../../../models/product";
 
 const handler = async (req, res) => {
@@ -7,17 +6,14 @@ const handler = async (req, res) => {
 			message: `${req.method} is not supported on this route`,
 		});
 	}
-	try {
-		await dbConnect();
-		let products = await ProductModel.find();
-		res.status(200).send({
-			products,
-		});
-	} catch (err) {
-		res.send({
-			message: err.message,
+	let { _id } = req.query;
+	if (!_id) {
+		return res.status(404).send({
+			message: `id is missing in params`,
 		});
 	}
+	let product = await ProductModel.findById(_id);
+	res.status(200).send(product);
 };
 
 export default handler;
