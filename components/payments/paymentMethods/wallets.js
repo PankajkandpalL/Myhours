@@ -3,7 +3,7 @@ import React from 'react';
 import RadioSelect from './common/radioSelect';
 import ButtonEl from './common/button';
 
-export default function Wallets({amount='598.00'}){
+export default function Wallets({amount}){
     const [selectedValue, setSelectedValue] = React.useState(null);
     const props = {selectedValue, setSelectedValue};
     return (
@@ -24,7 +24,7 @@ export default function Wallets({amount='598.00'}){
                 <Box sx={{width:"70%"}}><RadioSelect {...props} image={'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcFWerxYnFitX7QZqtg9iCrrdQc9ITwJhDOnAIojAoONSaSBqvkbkDB_Q88Qgl09_FKSc&usqp=CAU'} text={'Jiomoney'} /></Box>
                 <Box sx={{width:"70%"}}><RadioSelect {...props} image={'https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/phonepe-logo-icon.png'} text={'Phonepe'} /></Box>
             </Box>
-            <ButtonEl amount={amount} disabled={selectedValue}/>
+            <ButtonEl amount={amount} disabled={!selectedValue}/>
         </Box>
     )
 }

@@ -20,43 +20,43 @@ export default function AccountNavigation({nav}){
                     <Box>email@email.com</Box>
                 </Box>
             </Box>
-            <Box sx={{textAlign:"center"}}>
-            <Box onClick={()=>router.push('/account/orders')} sx={{display:'flex',alignItems:"center",justifyContent:'space-between',bgcolor:'white',color:'black',borderBottom:'1px solid grey',height:"75px",color:nav=== '/account/orders'?'#fc2779':'black',cursor:'pointer'}}>
-                <Box sx={{display:"flex"}}>
-                    <AssignmentIcon/>
-                    <Typography >Orders</Typography>
+            <Box sx={{textAlign:"center",p:2,bgcolor:'white'}}>
+                <Box onClick={()=>router.push('/account/orders')} sx={{display:'flex',alignItems:"center",justifyContent:'space-between',bgcolor:'white',color:'black',borderBottom:'1px solid #e6e6e7',height:"75px",color:nav=== '/account/orders'?'#fc2779':'#282828',cursor:'pointer'}}>
+                    <Box sx={{display:"flex",gap:2}}>
+                        <Box sx={{borderRadius:8,boxShadow: 'rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px',p:1}} ><AssignmentIcon/></Box>
+                        <Typography >Orders</Typography>
+                    </Box>
+                    <Box>
+                        <ArrowForwardIosIcon/>
+                    </Box>
                 </Box>
-                <Box>
-                    <ArrowForwardIosIcon/>
+                <Box onClick={()=>router.push('/account/addresses')}  sx={{display:'flex',alignItems:"center",justifyContent:'space-between',bgcolor:'white',color:'black',borderBottom:'1px solid #e6e6e7',height:'75px',color:nav=== '/account/addresses'?'#fc2779':'#282828',cursor:'pointer'}}>
+                    <Box sx={{display:"flex",gap:2}}>
+                        <Box sx={{borderRadius:8,boxShadow: 'rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px',p:1}} ><FmdGoodIcon/></Box>
+                        <Typography>Addresses</Typography>
+                    </Box>
+                    <Box>
+                        <ArrowForwardIosIcon/>
+                    </Box>
                 </Box>
-            </Box>
-            <Box onClick={()=>router.push('/account/addresses')}  sx={{display:'flex',alignItems:"center",justifyContent:'space-between',bgcolor:'white',color:'black',borderBottom:'1px solid grey',height:'75px',color:nav=== '/account/addresses'?'#fc2779':'black',cursor:'pointer'}}>
-                <Box sx={{display:"flex"}}>
-                    <FmdGoodIcon/>
-                    <Typography>Addresses</Typography>
+                <Box  onClick={()=>router.push('/account/wishlist')} sx={{display:'flex',alignItems:"center",justifyContent:'space-between',bgcolor:'white',color:'black',borderBottom:'1px solid #e6e6e7',height:'75px',color:nav=== '/account/wishlist'?'#fc2779':'#282828',cursor:'pointer'}}>
+                    <Box sx={{display:"flex",gap:2}}>
+                        <Box sx={{borderRadius:8,boxShadow: 'rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px',p:1}} ><FavoriteBorderIcon/></Box>
+                        <Typography>Wishlist</Typography>
+                    </Box>
+                    <Box>
+                        <ArrowForwardIosIcon/>
+                    </Box>
                 </Box>
-                <Box>
-                    <ArrowForwardIosIcon/>
+                <Box onClick={()=>router.push('/account/referral')} sx={{display:'flex',alignItems:"center",justifyContent:'space-between',borderBottomRightRadius:"10px",borderBottomLeftRadius:"10px",bgcolor:'white',color:'black',height:'75px',color:nav=== '/account/referral'?'#fc2779':'#282828',cursor:'pointer'}}>
+                    <Box sx={{display:"flex",gap:2}}>
+                        <Box sx={{borderRadius:8,boxShadow: 'rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px',p:1}} ><RedeemIcon/></Box>
+                        <Typography>Refer & Earn</Typography>
+                    </Box>
+                    <Box>
+                        <ArrowForwardIosIcon/>
+                    </Box>
                 </Box>
-            </Box>
-            <Box  onClick={()=>router.push('/account/wishlist')} sx={{display:'flex',alignItems:"center",justifyContent:'space-between',bgcolor:'white',color:'black',borderBottom:'1px solid grey',height:'75px',color:nav=== '/account/wishlist'?'#fc2779':'black',cursor:'pointer'}}>
-                <Box sx={{display:"flex"}}>
-                    <FavoriteBorderIcon/>
-                    <Typography>Wishlist</Typography>
-                </Box>
-                <Box>
-                    <ArrowForwardIosIcon/>
-                </Box>
-            </Box>
-            <Box onClick={()=>router.push('/account/referral')} sx={{display:'flex',alignItems:"center",justifyContent:'space-between',borderBottomRightRadius:"10px",borderBottomLeftRadius:"10px",bgcolor:'white',color:'black',height:'75px',color:nav=== '/account/referral'?'#fc2779':'black',cursor:'pointer'}}>
-                <Box sx={{display:"flex"}}>
-                    <RedeemIcon/>
-                    <Typography>Refer & Earn</Typography>
-                </Box>
-                <Box>
-                    <ArrowForwardIosIcon/>
-                </Box>
-            </Box>
             </Box>
         </Box>
     )
