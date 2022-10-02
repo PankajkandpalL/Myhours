@@ -120,7 +120,7 @@ export default function Login() {
 
       if (data.data.message == "Created Successfully!") {
         localStorage.setItem("message", data.data.message);
-        localStorage.setItem("userId", data.data.user);
+        localStorage.setItem("userId", data.data.user);``
         setMessage(true);
         setNumber("")
       } else {

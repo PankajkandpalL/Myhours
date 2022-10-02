@@ -7,7 +7,7 @@ const Footer = (props) => {
 	return (
 		<Box>
 			<Topfooter />
-			{/* <Bottomfooter /> */}
+			<Bottomfooter />
 		</Box>
 	);
 };
