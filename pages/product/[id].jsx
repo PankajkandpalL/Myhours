@@ -5,6 +5,7 @@ import {
 	Box,
 	Breadcrumbs,
 	Button,
+	Checkbox,
 	Container,
 	Divider,
 	FormControl,
@@ -31,10 +32,14 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Headline from "../../components/Headline/Headline";
 import PGtypeCarousel from "../../components/PGtypeCarousel/PGtypeCarousel";
 import Link from "next/link";
+import { Favorite, FavoriteBorder } from "@mui/icons-material";
+
+const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
 let { BASE_API_URL } = config;
 
 const ProductPage = ({ product }) => {
+
 	const [imagesByColor, setImagesByColor] = useState(
 		product.hasColor ? product.imagesByColor[0].images : []
 	);
@@ -54,6 +59,44 @@ const ProductPage = ({ product }) => {
 		setSelectedColor(e.target.value);
 	};
 
+	const postData = () => {
+
+		let d = JSON.parse(localStorage.getItem("token"))
+	
+		var data = JSON.stringify({
+		  "productName": product.productName,
+		  "newPrice": product.newPrice,
+		  "poster": product.poster
+		});
+		
+		var config = {
+		  method: 'post',
+		  url: 'http://localhost:3000/api/cart/post',
+		  headers: { 
+			'token': d.primaryToken , 
+			'Content-Type': 'application/json'
+		  },
+		  data : data
+		};
+		
+		axios(config)
+		.then(function (response) {
+		  if(response.data=="Already In the cart!")
+		  {
+			alert("Already In The Cart!")
+		  }
+		  else
+		  {
+			alert("Product Added to the Cart")
+		  }
+		})
+		.catch(function (error) {
+		  console.log(error);
+		});
+		
+	
+	  } 
+
 	useEffect(() => {
 		if (product.hasColor) {
 			let selectedImages = product.imagesByColor.find(
@@ -63,6 +106,97 @@ const ProductPage = ({ product }) => {
 			setImagesByColor(selectedImages.images);
 		}
 	}, [selectedColor]);
+
+	let handleDel = (id) => {
+
+		let d = JSON.parse(localStorage.getItem("token"))
+
+		var data = JSON.stringify({
+			"id": id
+		  });
+		  
+		  var config = {
+			method: 'delete',
+			url: 'http://localhost:3000/api/wishlist/delete',
+			headers: { 
+			  'token': d.primaryToken, 
+			  'Content-Type': 'application/json'
+			},
+			data : data
+		  };
+		  
+		  axios(config)
+		  .then(function (response) {
+			alert(response.data)
+		  })
+		  .catch(function (error) {
+			console.log(error);
+		  });
+		  
+	}
+
+
+	let handleChange = (e) => {
+		
+		let d = JSON.parse(localStorage.getItem("token"))
+
+		if(e.target.checked)
+		{
+			var data = JSON.stringify({
+				"productName": product.productName,
+				"newPrice": product.newPrice,
+				"oldPrice": product.oldPrice,
+				"poster": product.poster,
+				"ratings": Math.floor(Math.random()*10)
+			  });
+			  
+			  var config = {
+				method: 'post',
+				url: 'http://localhost:3000/api/wishlist/post',
+				headers: { 
+				  'token': d.primaryToken, 
+				  'Content-Type': 'application/json'
+				},
+				data : data
+			  };
+			  
+			  axios(config)
+			  .then(function (response) {
+				alert(JSON.stringify(response.data));
+			  })
+			  .catch(function (error) {
+				console.log(error);
+			  });  
+		}
+		else
+		{
+			var data = JSON.stringify({
+				"productName": product.productName,
+				"newPrice": product.newPrice,
+				"oldPrice": product.oldPrice,
+				"poster": product.poster
+			  });
+			  
+			  var config = {
+				method: 'post',
+				url: 'http://localhost:3000/api/wishlist/remove',
+				headers: { 
+				  'token': d.primaryToken, 
+				  'Content-Type': 'application/json'
+				},
+				data : data
+			  };
+			  
+			  axios(config)
+			  .then(function (response) {
+				console.log(response.data.id)
+				handleDel(response.data.id)
+			  })
+			  .catch(function (error) {
+				console.log(error);
+			  });
+		}
+	}
 
 	return (
 		<Layout>
@@ -189,7 +323,8 @@ const ProductPage = ({ product }) => {
 									display={"flex"}
 									alignitem={"center"}
 									justifyContent={"center"}>
-									<FavoriteBorderIcon />
+									{/* <FavoriteBorderIcon /> */}
+									<Checkbox onChange={(e)=>handleChange(e)} {...label} icon={<FavoriteBorder />} checkedIcon={<Favorite />} />
 								</Box>
 								<Box>
 									<Button
@@ -198,7 +333,7 @@ const ProductPage = ({ product }) => {
 											borderRadius: "10px",
 										}}
 										onClick={() => {
-											alert("product will be added to cart!");
+											postData()
 										}}
 										variant="contained">
 										Add to Cart
