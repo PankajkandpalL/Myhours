@@ -31,7 +31,7 @@ const List = () => {
         <SearchIcon />
       </Link>
       }
-      <Link href="/wishlist">
+      <Link href="/account/wishlist">
         <FavoriteBorderIcon />
       </Link>
       {matches &&   <Link href="/cart">
