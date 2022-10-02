@@ -5,7 +5,7 @@ const Missing = () => {
   return (
     <Box backgroundColor="#f2f2f2">
       <Box textAlign={"center"}>
-      <Typography variant="h3">--Missing--</Typography>
+      <Typography variant="h3">MISSED SOMETHING?</Typography>
       </Box>
 
 
