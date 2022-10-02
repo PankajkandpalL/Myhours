@@ -3,7 +3,7 @@ import Link from 'next/link'
 import React from 'react'
 import {FiChevronRight} from "react-icons/fi"
 
-const Location = () => {
+const Navigation = () => {
   return (
     <Box backgroundColor="white">
         <Box padding={"0.5rem"} display="flex" sx={{cursor:"pointer"}} ml="15px">
@@ -15,4 +15,4 @@ const Location = () => {
   )
 }
 
-export default Location
+export default Navigation;
