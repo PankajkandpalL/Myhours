@@ -75,7 +75,7 @@ const Carouselcard1 = (
         >
           <FavoriteBorderIcon />
         </Box>
-        <Link href={`${_id}`} >
+        <Link href={`/product/${_id}`} >
         <Button
           
           sx={{

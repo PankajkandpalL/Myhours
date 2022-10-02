@@ -1,3 +1,4 @@
+import dbConnect from "../../../lib/mongodbConnect";
 import ProductModel from "../../../models/product";
 
 const handler = async (req, res) => {
@@ -7,6 +8,7 @@ const handler = async (req, res) => {
 		});
 	}
 	let { _id } = req.query;
+	await dbConnect();
 	if (!_id) {
 		return res.status(404).send({
 			message: `id is missing in params`,
