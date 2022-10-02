@@ -6,10 +6,12 @@ const addSchema = new Schema({
     lastName : {type : String, required : true},
     state : {type : String, required : true},
     city : {type : String, required : true},
-    area : {type : String, required : true},
+    area : {type : String},
     pincode : { type : Number,required : true },
     mobile : { type : Number, required : true },
-    flatNumber : { type : Number, required : true },
+    flatHouseNumber : { type : String, required : true },
+    apartmentAreaLocalityRoad : { type : String, required : true },
+    defaultAddress : { type : Boolean},
     addressOf : { 
         type : Schema.Types.ObjectId,
         ref : "user"
@@ -20,4 +22,4 @@ const addSchema = new Schema({
 
 const Address = models.address || model('address', addSchema)
 
-export default addSchema
+export default Address;

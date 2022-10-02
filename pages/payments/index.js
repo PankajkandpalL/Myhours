@@ -3,6 +3,7 @@ import PriceDetails from '../../components/payments/priceDetails';
 import CartSummary from '../../components/payments/cartSummary';
 import PaymentMethods from '../../components/payments/paymentMethods';
 import React from 'react';
+import Layout from '../../components/Layout/Layout';
 
 const data = [{img:'https://cdn.shopify.com/s/files/1/0906/2558/products/moisturiser.jpg?v=1626968292',item:'Aquaholic Priming Moisturizer',price:"499",qty:1},{img:'https://cdn.shopify.com/s/files/1/0906/2558/products/moisturiser.jpg?v=1626968292',item:'Aquaholic Priming Moisturizer',price:"499",qty:2},{img:'https://cdn.shopify.com/s/files/1/0906/2558/products/moisturiser.jpg?v=1626968292',item:'Aquaholic Priming Moisturizer',price:"499",qty:1}];
 // const data = [{img:'https://cdn.shopify.com/s/files/1/0906/2558/products/moisturiser.jpg?v=1626968292',item:'Aquaholic Priming Moisturizer',price:"499",qty:1}]
@@ -25,20 +26,22 @@ export default function Payments(){
     },[cartItems])
     const props = {totalAmount:fix2dig(totalAmount),subTotal,tax,shipping};
     return (
-        <Box sx={{m:1,bgcolor:'#f2f2f2',height:'100vh'}}>
-            <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
-                <Grid item xs={1} sm={3} md={5}>
-                        <Box>
-                            <PriceDetails {...props} />
-                            <CartSummary cartItems={cartItems}/>
-                        </Box>
+        <Layout>
+            <Box sx={{m:1,mt:'60px',bgcolor:'#f2f2f2',height:'100vh'}}>
+                <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+                    <Grid item xs={1} sm={3} md={5}>
+                            <Box>
+                                <PriceDetails {...props} />
+                                <CartSummary cartItems={cartItems}/>
+                            </Box>
+                    </Grid>
+                    <Grid item xs={3} sm={5} md={7}>
+                            <Box>
+                                <PaymentMethods amount={fix2dig(totalAmount)}/>
+                            </Box>
+                    </Grid>
                 </Grid>
-                <Grid item xs={3} sm={5} md={7}>
-                        <Box>
-                            <PaymentMethods amount={fix2dig(totalAmount)}/>
-                        </Box>
-                </Grid>
-            </Grid>
-        </Box>
+            </Box>
+        </Layout>
     )
 }
