@@ -1,7 +1,8 @@
 import Modal from '@mui/material/Modal';
 import {Box, FormControlLabel, Typography, Checkbox, TextField, Button} from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-import {v4 as uuid} from 'uuid';
+import axios from 'axios';
+import React from 'react';
 
 const style = {
     position: 'absolute',
@@ -18,15 +19,15 @@ const style = {
     borderRadius:3
   };
 
-export default function AddAddress({open,setOpen,handleClose,handleOpen,address,setAddress,addresses,setAddresses}){
+export default function AddAddress({open,setOpen,handleClose,handleOpen,address,setAddress,addresses,setAddresses,user}){
     const handleChange = (e)=>{
         const {name,value,checked} = e.target;
         if(name === 'setDefaultAddress') setAddress({...address,[name]:checked})
         else setAddress({...address,[name]:value});
         
     }
-    const handleSubmit = ()=>{
-        setAddresses([...addresses,{...address,id:uuid()}]);
+    const handleSubmit = async()=>{
+        setAddresses([...addresses,{...address,addressOf:null}]);
         setOpen(false);
     }
     return (
@@ -51,7 +52,7 @@ export default function AddAddress({open,setOpen,handleClose,handleOpen,address,
                     <TextField variant='outlined' name="lastName" value={address.lastName} label='Last Name' sx={{m:1,width:'40ch'}} onChange={handleChange}/>
                 </Box>
                 <Box>
-                    <TextField variant='outlined' name="phoneNumber" value={address.phoneNumber} label='Phone Number' sx={{m:1,width:'40ch'}} onChange={handleChange}/>
+                    <TextField variant='outlined' name="mobile" value={address.mobile} label='Phone Number' sx={{m:1,width:'40ch'}} onChange={handleChange}/>
                     <TextField variant='outlined' name='flatHouseNumber' value={address.flatHouseNumber} label='Flat/House Number' sx={{m:1,width:'40ch'}} onChange={handleChange}/>
                 </Box>
                 <Box>
@@ -65,7 +66,7 @@ export default function AddAddress({open,setOpen,handleClose,handleOpen,address,
                     <TextField variant='outlined' name="state" value={address.state} label='State' sx={{m:1,width:'40ch'}} onChange={handleChange}/>
                     <TextField variant='outlined' name='city' value={address.city} label='City' sx={{m:1,width:'40ch'}} onChange={handleChange}/>
                 </Box>
-                <FormControlLabel control={<Checkbox name='setDefaultAddress' value={address.setDefaultAddress} onChange={handleChange} />} label="Set as default address" />
+                <FormControlLabel control={<Checkbox name='defaultAddress' value={address.defaultAddress} onChange={handleChange} />} label="Set as default address" />
                 <Box sx={{display:'flex',gap:'50px',justifyContent:'space-between'}}>
                     <Box></Box>
                     <Button onClick={handleSubmit} sx={{m:1,mt:1,bgcolor:'black',color:'white','&:hover':{color:'white',bgcolor:'black'}}}>Save and Continue</Button>
