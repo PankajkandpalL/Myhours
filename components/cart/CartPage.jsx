@@ -594,7 +594,9 @@ const CartPage = (  ) => {
         </Box>
         <Box 
       backgroundColor="white" 
-      textAlign={"right"}>
+      textAlign={"right"}
+      pr="2rem"
+      >
         <Button variant="contained"
         onClick={()=>{handleTotal(Total)}}
         sx={{backgroundColor:"black",padding:"1rem",color:"white",fontSize:"17px"}} >
