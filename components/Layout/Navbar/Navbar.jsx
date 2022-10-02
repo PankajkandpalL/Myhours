@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, useMediaQuery } from "@mui/material";
 import React, { useState } from "react";
 import Nav from "./Nav";
 import Topbar from "./Topbar";
@@ -8,9 +8,10 @@ const Navbar = ({ logo }) => {
   const [showbar, setShowbar] = useState(true);
   const [listbar, setListbar] = useState('none')
 
-const myhover = (e)=>{
 
-}
+  
+  const matches = useMediaQuery('(min-width:390px)');
+
 
   let item = [
     {
@@ -43,10 +44,15 @@ const myhover = (e)=>{
     },
   ];
   return (
-    <Box position={"fixed"} zIndex={1000} sx={{ width: "100%", color: "white" }}>
+    <Box position={"fixed"}
+    bgcolor={"black"}
+    zIndex={1000} sx={{ width: "100%", color: "white" }}>
       {showbar && <Topbar showbar={showbar} setShowbar={setShowbar} />}
       <Box>
         <Nav logo={logo} />
+        
+      </Box>
+  
         <Box
           sx={{
             backgroundColor: "#141414",
@@ -60,7 +66,7 @@ const myhover = (e)=>{
         >
           {item.map((e, i) => {
             return (
-              <Box >
+              <Box key={i}>
                 <Typography
                 sx={{
                   fontSize : "14px",
@@ -87,7 +93,8 @@ const myhover = (e)=>{
             );
           })}
         </Box>
-      </Box>
+  
+  
     </Box>
   );
 };

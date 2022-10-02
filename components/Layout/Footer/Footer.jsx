@@ -3,7 +3,8 @@ import React from 'react'
 import Bottomfooter from './Bottomfooter'
 import Topfooter from './Topfooter'
 
-const Footer = () => {
+const Footer = (props) => {
+
   return (
     <Box sx={{
       position : "relative",
@@ -12,11 +13,14 @@ const Footer = () => {
       left :0,
       right : 0,
       zIndex : -1
+
     }}>
-<Topfooter />
+ <Topfooter />
 <Bottomfooter />
     </Box>
   )
 }
+
+
 
 export default Footer

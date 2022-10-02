@@ -7,7 +7,10 @@ const Logo = ({logo}) => {
   return (
     <Link href={'/'}>
     <Box
-        width={"150px"}
+        width={{
+          xs : "120px", 
+          sm : "150px"
+        }}
         sx={{
           display: "flex",
           alignItems: "center",
@@ -19,8 +22,7 @@ const Logo = ({logo}) => {
           fontWeight: 400,
         }}
       >
-        <Image
-          
+        <Image          
           width={"50%"}
           height={"50%"}
           src={logo}
