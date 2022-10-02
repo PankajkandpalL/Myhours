@@ -5,7 +5,9 @@ const cartSchema = new Schema({
 	productName: {type : String, required : true},
 	price: {type :Number, required : true},
     poster : { type: String, required : true },
-    quantity : { type : Number, default : 1 }
+    variant : { type : String, default : "Pink" },
+    quantity : { type : Number, default : 1 },
+    inCart : { type : Boolean, default : true }
 
 })
 
