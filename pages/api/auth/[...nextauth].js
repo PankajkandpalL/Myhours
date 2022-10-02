@@ -12,8 +12,36 @@ export default NextAuth({
   providers: [
 
     GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET
+      clientId: CLIENT_ID,
+      clientSecret: CLIENT_SECRET_ID,
+      authorization: {
+        params: {
+          prompt: "consent",
+          access_type: "offline",
+          response_type: "code"
+        }
+      },
+      jwt : {
+        encryption : true
+      },
+      secret : NEXTAUTH_SECRET,
+      callbacks : {
+        async jwt(token, account){
+          if(account?.accessToken) 
+          {
+            token.accessToken = account.accessToken
+          }
+          return token;
+        }
+      },
+      redirect : async(url, _baseUrl) => {
+        console.log("url is ",  url, "and base url is", _baseUrl)
+        if(url === "/register")
+        {
+          return Promise.resolve("/")
+        }
+        return Promise.resolve("/")
+      }
     })
 
   ],
