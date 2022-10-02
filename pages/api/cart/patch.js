@@ -9,26 +9,25 @@ const handler = async (req, res) => {
       message: `${req.method} is not supported on this route.`,
     });
   }
+
   const { id, quan } = req.body;
+
   const { token } = req.headers;
+
   try {
     await dbConnect();
 
     let verify = jwt.verify(token, "ACCESSSECRET1234");
 
-    console.log("Verify", verify);
-
     if (verify) {
+      
       let decode = jwt.decode(token);
 
-      await User.findByIdAndUpdate(decode.id, { $pull: { cartData: id } });
-      await CartModel.findByIdAndUpdate(id, { $set: { quantity: quan } });
-      await User.findByIdAndUpdate(decode.id, { $push: { cartData: id } });
-      let data = await User.findById(decode.id)
-        .select({ mobile: 0, addresses: 0, __v: 0, email: 0 })
-        .populate("cartData");
+      let data = await User.updateOne({ _id : decode.id, "cartData._id" : id }, { $set : { "cartData.$.quantity" : quan } })
+      console.log(data)
 
-      return res.status(201).send({ updatedCart: data });
+      res.send("Updated!")
+      
     }
     return res.status(401).send("Token Expired");
   } catch (e) {

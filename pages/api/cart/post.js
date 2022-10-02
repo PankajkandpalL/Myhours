@@ -22,11 +22,16 @@ const handler = async (req, res) => {
     if (verify) {
       let decode = jwt.decode(accessToken);
 
-      let pId = await CartModel.create({ productName, poster, price : newPrice, quantity : 1 });
+      let old = await User.findOne({ "cartData.productName" : productName })
 
-      await User.findByIdAndUpdate(decode.id, { $push: { cartData: pId._id } });
+      if(old)
+      {
+        return res.send("Already In the cart!")
+      }
 
-      return res.status(201).send("Added to Cart Successfully!", { cart : pId });
+      await User.findByIdAndUpdate(decode.id, { $push : { cartData : { productName :productName , price : newPrice, poster:poster, quantity : 1 } } })
+
+      res.status(200).send("added to Cart!")
     }
     return res.status(401).send("Token Expired");
   } catch (e) {
