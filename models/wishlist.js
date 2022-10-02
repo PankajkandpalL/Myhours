@@ -6,7 +6,8 @@ const wishlistSchema = new Schema({
 	newPrice: {type :Number, required : true},
     oldPrice : { type : Number },
     poster : { type: String, required : true },
-    ratings : { type : Number }
+    ratings : { type : Number },
+    inWishlist : { type : Boolean, default : true }
 
 })
 

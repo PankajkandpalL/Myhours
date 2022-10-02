@@ -13,15 +13,15 @@ const handler = async (req, res) => {
   let { token } = req.headers;
 
   try {
+
     await dbConnect();
     let verify = jwt.verify(token, "ACCESSSECRET1234");
     if (verify) {
+      
       let decode = jwt.decode(token);
-      let data = await User.findOne({ _id: decode.id })
-        .select({ _id: 0, mobile: 0, addresses: 0, __v: 0, email: 0 })
-        .populate("cartData")
-        .select({ price: 0, poster: 0 });
-      res.status(201).send({ cart: data });
+      let data = await User.findOne({ _id: decode.id }).select({ _id: 0, mobile: 0, addresses: 0, __v: 0, email: 0 })
+      res.status(201).send({ cart: data })
+
     }
 
     return res.status(401).send("Unauthorized or Token Expired.");

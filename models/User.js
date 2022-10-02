@@ -12,8 +12,10 @@ const userSchema = new Schema({
     ],
     cartData : [
         {
-            type : Schema.Types.ObjectId,
-            ref : "cart"
+           productName : String,
+           price : Number,
+           poster : String,
+           quantity : Number,
         }
     ],
     addresses : [
