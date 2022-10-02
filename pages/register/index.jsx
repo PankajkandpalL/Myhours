@@ -102,6 +102,7 @@ export default function Login() {
       .then((confirmationResult) => {
         window.confirmationResult = confirmationResult;
         setToggle(true);
+
       })
       .catch((error) => {
         console.log("Sms Not sent");
@@ -121,6 +122,7 @@ export default function Login() {
         localStorage.setItem("message", data.data.message);
         localStorage.setItem("userId", data.data.user);
         setMessage(true);
+        setNumber("")
       } else {
         localStorage.setItem("message", data.data.message);
         localStorage.setItem("token", JSON.stringify(data.data.token));
