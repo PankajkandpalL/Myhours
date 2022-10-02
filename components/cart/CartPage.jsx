@@ -19,7 +19,7 @@ const CartPage = (  ) => {
   const [ cartSummary, setCartSummary ] = useState([])
   const [apply, setApply] = useState([]);
   // console.log("apply",apply[0].price)
-  // console.log(cartSummary)
+  console.log(cartSummary)
   const [ bouns, setBouns ] = useState(()=>{
 
     let bounss = [
@@ -195,7 +195,7 @@ const CartPage = (  ) => {
   const Total = fix2dig(
     cartSummary?.reduce((a, b) => {
       return Number(a + Number(b.price)*Number(b.quantity));
-    }, 0)
+    }, 190)
   );
   // console.log(Total)
 
@@ -222,11 +222,6 @@ const CartPage = (  ) => {
   let handleTotal=(total)=>{
     localStorage.setItem("total",total)
   }
-
-
-  
-
-
 
   return (
     <Box>
@@ -310,6 +305,7 @@ const CartPage = (  ) => {
               <Box border={"1px solid"} borderRadius="10px" p="1rem">
                 {/* Map cart data Start----> */}
                 {cartSummary?.map((e,i) => {
+                  console.log("cart data",e)
                   return (
                     <Box key={i}>
                       <Box display={"flex"} justifyContent={"space-between"}>
@@ -576,12 +572,12 @@ const CartPage = (  ) => {
                 </Box>
                 {apply.length>0 ? <Box display="flex" justifyContent={"space-between"}>
                   <p> Discount</p>
-                  <p style={{ color: "green" }}>-{apply[0].price}</p>
+                  <p style={{ color: "green" }}>-₹{apply[0].price}</p>
                 </Box>
                 : ""}
                 <Box display="flex" justifyContent={"space-between"}>
                   <p>Shipping</p>
-                  <p style={{ color: "green" }}>Free</p>
+                  <p style={{ color: "green" }}>{Total > 500 ? "Free":"₹99"}</p>
                 </Box>
                 <hr />
                 <Box display="flex" justifyContent={"space-between"}>
