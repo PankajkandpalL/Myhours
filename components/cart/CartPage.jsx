@@ -10,12 +10,13 @@ import { TbDiscount2 } from "react-icons/tb";
 import React, { useEffect, useState } from "react";
 import EmptycaCart from "../../components/cart/EmptyCart";
 import axios from 'axios'
+import {useRouter} from "next/router"
 // import styles from '../../styles/Home.module.css'
 
 // Add this wherever you render your code...
 
 const CartPage = (  ) => {
-  
+  const router=useRouter()
   const [ cartSummary, setCartSummary ] = useState([])
   const [apply, setApply] = useState([]);
   // console.log("apply",apply[0].price)
@@ -221,6 +222,8 @@ const CartPage = (  ) => {
 
   let handleTotal=(total)=>{
     localStorage.setItem("total",total)
+    router.push("/payments")
+
   }
 
   return (
