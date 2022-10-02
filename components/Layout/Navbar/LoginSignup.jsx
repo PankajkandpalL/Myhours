@@ -1,6 +1,7 @@
 import { Box, FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import Head from "next/head";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import jwt from 'jsonwebtoken'
 
 import { TableHead } from "@mui/material";
 
@@ -8,13 +9,24 @@ const LoginSignup = () => {
   let auth = true;
   // this auth will come from above components
   let text = ["Login/Register"];
-  const [info, setInfo] = useState("hii user");
+  const [info, setInfo] = useState();
 
+  let getUser = () => {
+    let d = JSON.parse(localStorage.getItem("token"))
+    let x = jwt.decode(d.primaryToken)
+    setInfo(x.name)
+  }
 
+  useEffect(()=>{
+    if(localStorage.getItem("message")==="Logged In")
+    {
+      getUser()
+    }
+
+  },[])
 
   return (
     <Box
-      border={"1px solid red"}
       sx={{
         display: "flex",
         alignitem: "center",
