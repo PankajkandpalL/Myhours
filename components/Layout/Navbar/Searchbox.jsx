@@ -1,4 +1,4 @@
-import { Box, Input } from "@mui/material";
+import { Box, Input, Typography } from "@mui/material";
 import { margin } from "@mui/system";
 
 import React from "react";
@@ -6,6 +6,7 @@ import React from "react";
 const Searchbox = () => {
   return (
     <Box
+    width={{ sm : "311px", md : "350px" }}
       sx={{
         display: "flex",
         alignitem: "center",
@@ -13,12 +14,14 @@ const Searchbox = () => {
         borderRadius: "10px",
         height: "42px",
       }}
+      // border={"1px solid red"}
     >
       <input
-        placeholder='Try "Liquid Lipstick"'
+         
+         placeholder='Try "Liquid Lipstick"'
         style={{
           padding: "10px 20px ",
-          width: "350px",
+          width : "100%",       
           overtflow: "hidden",
           border: "1px solid white",
           outline: "none",
@@ -26,8 +29,7 @@ const Searchbox = () => {
           color: "white",
         }}
       />
-      {/* suggesion box at bottom */}
-      {/* icons here  */}
+    
       <Search />
     </Box>
   );
@@ -47,12 +49,15 @@ const Search = () => {
         justifyContent: "space-around",
       }}
     >
-      {/* <FiSearch /> */}
-      <p
-        style={{
+   
+      <Typography
+      fontSize={{
+        sm : "15px" , md : "20px"
+      }}
+        sx={{
           height: "fit-content",
           margin: "auto",
-          fontSize: "20px",
+          // fontSize: "15px",
           lineHeight: "23px",
           color: "#212121",
           fontWeight: 400,
@@ -60,7 +65,7 @@ const Search = () => {
         }}
       >
         Search
-      </p>
+      </Typography>
     </Box>
   );
 };

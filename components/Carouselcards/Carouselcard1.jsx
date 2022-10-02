@@ -26,7 +26,7 @@ const Carouselcard1 = (
     >
       <Box overflow={"hidden"} borderRadius={"15px"}>
         <Image
-          loader={() => poster}
+          loader={(src) => poster}
           src={poster}
           alt="icon"
           width={140}

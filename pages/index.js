@@ -65,7 +65,17 @@ export default function Home() {
     "https://d32baadbbpueqt.cloudfront.net/Homepage/cba32bfe-cbf9-47f9-b27c-823272a94828.jpg",
     "https://d32baadbbpueqt.cloudfront.net/Homepage/52feec2f-892b-4fad-b344-ff9fcb7e8bb1.jpg",
   ];
+//  newlylaunched
+ let newlylaunched =[
+  "https://d32baadbbpueqt.cloudfront.net/Homepage/a1ea3283-9593-4f1c-8e6b-70c3a5062c37.jpg",
+  "https://d32baadbbpueqt.cloudfront.net/Homepage/37471559-27d1-4509-9e31-29d889be7036.jpg",
+  "https://d32baadbbpueqt.cloudfront.net/Homepage/f190c764-84cf-4eea-a381-8b701be65852.gif",
+  "https://d32baadbbpueqt.cloudfront.net/Homepage/89e51326-1363-44e1-94f1-d5bd00bd2ca9.gif",
+  "https://d32baadbbpueqt.cloudfront.net/Homepage/6985f902-c3fe-4a20-bc76-1658a9109fd1.jpg",
+  "https://d32baadbbpueqt.cloudfront.net/Homepage/730cf92b-3d4a-4d08-bed8-db88e7911f32.jpg"
 
+
+ ]
   return (
     <Layout logo={logo}>
       <Box overflow={"hidden"} zIndex={100} position={"relative"}>
@@ -83,8 +93,8 @@ export default function Home() {
           <PGtypeCarousel
             // border={"1px solid red"}
             margin={"auto"}
-            width={"85%"}
-            height={"500px"}
+            width={"95%"}
+            height={"400px"}
             display={"flex"}
             justifyContent={"space-evenly"}
             alignItems={"center"}
@@ -109,83 +119,8 @@ export default function Home() {
           </Box>
         </Box>
 
-     <Box>
+        <Box>
           <Headline color={"black"}>Just In</Headline>
-          <PGtypeCarousel
-            // border={"1px solid red"}
-            margin={"auto"}
-            width={"85%"}
-            height={"500px"}
-            display={"flex"}
-            justifyContent={"space-evenly"}
-            alignItems={"center"}
-            gap={"20px"}
-          />
-        </Box> 
-         <Box paddingY={3} height={"600px"}>
-          <Headline color={"black"}>SHUKAR HAI, SUGAR HAI</Headline>
-        </Box> 
-        <Box
-          width={{
-            xs: "95%",
-            sm: "95%",
-            md: "95%",
-            lg: "1200px",
-            xl: " 1500px",
-          }}
-          margin={"auto"}
-          gap={"20px"}
-        >
-          <Headline color={"black"}> TOP PICKS OF THE WEEK</Headline>
-          <TripleFrameCarousel list={TOPPICKSOFTHEWEEK} />
-        </Box>
-      <Box paddingY={3} height={"600px"}>
-          <Headline color={"black"}> GIFTING</Headline>
-          <PGtypeCarousel
-            // border={"1px solid red"}
-            margin={"auto"}
-            width={"85%"}
-            height={"500px"}
-            display={"flex"}
-            justifyContent={"space-evenly"}
-            alignItems={"center"}
-            gap={"20px"}
-          />
-        </Box>
-        <Box paddingY={3} height={"450px"}>
-          <Headline color={"black"}> REFER YOUR FRIEND</Headline>
-          <Box
-            borderRadius={"25px"}
-            overflow={"hidden"}
-            width={"96%"}
-            margin={"auto"}
-            marginY={2}
-          >
-            <Link href="account/referral">
-              <img
-                src={
-                  "https://d32baadbbpueqt.cloudfront.net/Homepage/c807ee2f-ac79-46a4-ad99-eee353fec1f8.jpg"
-                }
-                style={{
-                  width: "100%",
-                  cursor: "pointer",
-                }}
-              />
-            </Link>
-          </Box>
-        </Box> 
-       
-        <Box
-          // paddingY={3}
-          height={"700px"}
-          sx={{
-            backgroundImage: `url('https://media.sugarcosmetics.com/upload/VTOBackgroungTexture.png')`,
-            marginY: "100px",
-            paddingY: "20px",
-          }}
-        >
-          <Headline color={"white"}> SUPER SAVERS </Headline>
-
           <PGtypeCarousel
             // border={"1px solid red"}
             margin={"auto"}
@@ -196,10 +131,104 @@ export default function Home() {
             alignItems={"center"}
             gap={"20px"}
           />
-    
+        </Box>
+        <Box paddingY={3}  height={"700px"}>
+          <Headline color={"black"}>SHUKAR HAI, SUGAR HAI</Headline>
+          <Box margin={"auto"}
+          height={{ xs : '300px', sm : "400px", md : '525px'}}
+          width={{ xs : '90%', sm : '95%', md : "80%"}}
+          overflow={"hidden"}
+          border={"1px solid red"}
+          borderRadius={"15px"}
+          
+          >
+          <iframe
+            width="100%"
+            height="100%"
+            src="https://www.youtube.com/embed/ZNPEgRIEkBY"
+            title="SUGAR's New TV Commercial ft. Ranveer & Tamannaah | In Hindi | #ShukarHaiSUGARHai | SUGAR Cosmetics"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          ></iframe>
+          </Box>
+        </Box>
+        <Box
+          width={{
+            xs: "95%",
+            sm: "95%",
+            md: "95%",
+            lg: "1200px",
+            xl: " 1500px",
+          }}
+          margin={"auto"}
+          marginY={3}
+          gap={"20px"}
+        >
+          <Headline color={"black"}> TOP PICKS OF THE WEEK</Headline>
+          <TripleFrameCarousel list={TOPPICKSOFTHEWEEK} />
+        </Box>
+        <Box paddingY={3} height={"530px"}>
+          <Headline color={"black"}> GIFTING</Headline>
+          <PGtypeCarousel
+            // border={"1px solid red"}
+            margin={"auto"}
+            width={"85%"}
+            height={"400px"}
+            display={"flex"}
+            justifyContent={"space-evenly"}
+            alignItems={"center"}
+            gap={"20px"}
+          />
+        </Box>
+        <Box height={"450px"} >
+          <Headline color={"black"}> REFER YOUR FRIEND</Headline>
+          <Box
+            borderRadius={"25px"}
+            overflow={"hidden"}
+            width={"96%"}
+            margin={"auto"}
+          //  border={"1px solid red"}
+          >
+            <Link href="account/referral">
+              <img
+                src={
+                  "https://d32baadbbpueqt.cloudfront.net/Homepage/c807ee2f-ac79-46a4-ad99-eee353fec1f8.jpg"
+                }
+                style={{
+                  width: "100%",
+                  cursor: "pointer",
+                  maxHeight : "300px"
+                }}
+              />
+            </Link>
+          </Box>
         </Box>
 
-        <Box paddingY={3} height={"450px"}>
+        <Box
+          // paddingY={3}
+          height={"580px"}
+          sx={{
+            backgroundImage: `url('https://media.sugarcosmetics.com/upload/VTOBackgroungTexture.png')`,
+            
+            paddingY: "20px",
+          }}
+        >
+          <Headline color={"white"}> SUPER SAVERS </Headline>
+
+          <PGtypeCarousel
+            // border={"1px solid red"}
+            margin={"auto"}
+            width={"95%"}
+            height={"400px"}
+            display={"flex"}
+            justifyContent={"space-evenly"}
+            alignItems={"center"}
+            gap={"10px"}
+          />
+        </Box>
+
+        <Box paddingY={3}  height={"350px"}>
           <Headline color={"black"}> NEWLY LAUNCHED </Headline>
           <Box
             borderRadius={"25px"}
@@ -248,19 +277,19 @@ export default function Home() {
           </Box>
         </Box>
 
-         <Box paddingY={3} height={"450px"}>
+        <Box  height={"530px"}>
           <Headline color={"black"}> SKINCARE BASICS</Headline>
           <PGtypeCarousel
             // border={"1px solid red"}
             margin={"auto"}
-            width={"85%"}
-            height={"500px"}
+            width={"95%"}
+            height={"400px"}
             display={"flex"}
             justifyContent={"space-evenly"}
             alignItems={"center"}
-            gap={"20px"}
+            gap={"10px"}
           />
-        </Box> 
+        </Box>
 
         <Box
           width={{
@@ -304,8 +333,50 @@ export default function Home() {
           <Headline color={"black"}> EXPLORE</Headline>
           <TripleFrameCarousel list={explore} />
         </Box>
-       
       </Box>
+      {/* <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br /> */}
     </Layout>
   );
 }
+

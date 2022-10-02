@@ -1,36 +1,40 @@
 import { Box } from "@mui/material";
 import React from "react";
 import { Typography } from "@mui/material";
+import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
+
+
 
 const Topbar = ({ setShowbar, showbar }) => {
   return (
-    <Box display={"flex"}>
+    <Box display={"flex"} justifyContent={"space-around"}  >
       <Typography
+      // border={"1px solid red"}
+      width={{xs : "fit-content", sm : "100%"}}
         align={"center"}
-        width={"100%"}
-        py={0.5}
+        // width={}
+        py={0.8}
         fontFamily={"Roboto, sans-serif"}
         fontWeight={400}
-        fontSize={"16px"}
+        fontSize={{ xs : "9px", sm : "16px"}}
         lineHeight={"24px"}
         color={"white"}
-        bgcolor={"black"}
+        
       >
         Get 4 mini liquid lipsticks + pouch FREE on a spend of Rs. 1099.
       </Typography>
-      {/* <CloseOutlinedIcon onClick={()=>setShowbar(!showbar)} /> */}
-      {/* having issue with icons 😅 */}
+    
       <p
         style={{
           width: "fit-content",
           position: "fixed",
-          right: 50,
+          right: 40,
           color: "white",
           top : -10
         }}
         onClick={() => setShowbar(!showbar)}
       >
-        cancel
+        <ClearOutlinedIcon />
       </p>
     </Box>
   );

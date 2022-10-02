@@ -16,7 +16,7 @@ const Layout = ({ children,logo }) => {
       }}    
     >
       <Navbar logo={logo} />
-      <Box marginTop={"168px"}>     
+      <Box marginTop={{ sm : "168px", sm : "100px" , xs : "100px"}}>     
       {children}
       </Box> 
       <Footer />

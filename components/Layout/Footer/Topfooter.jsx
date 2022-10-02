@@ -32,19 +32,21 @@ const [appearvalue, setAppearvalue] = useState('red')
   return (
     <Box
       sx={{
+        // border:"1px solid red",
         padding: 5,
         display: "flex",
         justifyContent: "space-evenly",
         flexDirection: "column",
         alignitem: "center",
         backgroundImage: `url('https://in.sugarcosmetics.com/desc-images/Rectangle_background.svg')`,
-        height : "190px"
+        height : "290px"
       }}
     >
       <Typography
+      width={'100%'}
         sx={{
             // border: "1px solid red",    
-            width : "490px",
+            
           margin: "auto",
           fontFamily: "Roboto, sans-serif",
           fontSize: "24px",
@@ -76,23 +78,37 @@ const [appearvalue, setAppearvalue] = useState('red')
       </Typography>
 
 
-{/* about both tablehead have error */}
 
 
 
       <Box
+      padding={{
+        xs : '0px 0px ',
+        sm :  "10px 19px",
+        md :  "10px 19px",
+        lg :  "10px 19px"
+      }}
+      width={{
+        xs : "100%",
+        sm : "80%",
+        md : "60%"
+      }}
+      margin={"auto"}
         sx={{
           display: "flex",
           justifyContent: "center",
-          padding: "10px 19px",
+          
         }}
+        
+        // border={"1px solid red"}
       >
         <input
         type="email"
           placeholder="Enter email"
           style={{
-            width: "472px",
+            width : "100%",
             outline: "none",
+            // border: "1px solid red"
           }}
           onChange={(e) => setQuerry(e.target.value)}
         />
@@ -105,6 +121,7 @@ const [appearvalue, setAppearvalue] = useState('red')
             border: "none",
             marginleft: "-10px",
           }}
+          fontSize
           onClick={()=>handleclick()}
         >
           SUBSCRIBE
