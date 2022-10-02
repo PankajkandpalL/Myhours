@@ -1,10 +1,11 @@
 import { Box, Button, Divider, TableHead, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import Headline from "../../Headline/Headline";
+import axios from 'axios'
 
 const Topfooter = () => {
   let msg = [
-    "Successfully Subscribed to news letter",
+    "Successfully Subscribed to news letter, you will be getting a mail regarding same in your inbox!",
     "Please enter valid email",
   ];
 const [appearvalue, setAppearvalue] = useState('red')
@@ -15,9 +16,31 @@ const [appearvalue, setAppearvalue] = useState('red')
  let buerry = querry.trim().split("").includes("@")
 
     if (querry !== "" && buerry) {
-      setappear(msg[0]);
-      setAppearvalue("black")
-      console.log(appear)
+      
+      var data = JSON.stringify({
+        "email": querry
+      });
+
+      let d = JSON.parse(localStorage.getItem("token"))
+      
+      var config = {
+        method: 'post',
+        url: 'http://localhost:3000/api/sendMail',
+        headers: { 
+          'token': d.primaryToken, 
+          'Content-Type': 'application/json'
+        },
+        data : data
+      };
+      
+      axios(config)
+      .then(function (response) {
+          setappear(msg[0]);
+          setAppearvalue("black")
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
       
     }else {
         setappear(msg[1])
