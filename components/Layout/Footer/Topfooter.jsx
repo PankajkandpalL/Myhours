@@ -23,7 +23,7 @@ const Topfooter = () => {
 
 			var config = {
 				method: "post",
-				url: "http://localhost:3000/api/sendMail",
+				url: "https://sugarcosmetucs.vercel.app/api/sendMail",
 				headers: {
 					token: d.primaryToken,
 					"Content-Type": "application/json",

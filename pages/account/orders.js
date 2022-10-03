@@ -13,7 +13,7 @@ export default function Order (){
     React.useEffect(()=>{
         axios({
             method:'GET',
-            url:"http://localhost:3000/api/wishlist/get",
+            url:"https://sugarcosmetucs.vercel.app/api/wishlist/get",
             headers:{
                 'token':`${JSON.parse(localStorage.getItem('token')).primaryToken}`
             }

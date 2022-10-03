@@ -71,7 +71,7 @@ const ProductPage = ({ product }) => {
 		
 		var config = {
 		  method: 'post',
-		  url: 'http://localhost:3000/api/cart/post',
+		  url: 'hhttps://sugarcosmetucs.vercel.app/api/cart/post',
 		  headers: { 
 			'token': d.primaryToken , 
 			'Content-Type': 'application/json'
@@ -117,7 +117,7 @@ const ProductPage = ({ product }) => {
 		  
 		  var config = {
 			method: 'delete',
-			url: 'http://localhost:3000/api/wishlist/delete',
+			url: 'https://sugarcosmetucs.vercel.app/api/wishlist/delete',
 			headers: { 
 			  'token': d.primaryToken, 
 			  'Content-Type': 'application/json'
@@ -152,7 +152,7 @@ const ProductPage = ({ product }) => {
 			  
 			  var config = {
 				method: 'post',
-				url: 'http://localhost:3000/api/wishlist/post',
+				url: 'http://lhttps://sugarcosmetucs.vercel.app/api/wishlist/post',
 				headers: { 
 				  'token': d.primaryToken, 
 				  'Content-Type': 'application/json'
@@ -179,7 +179,7 @@ const ProductPage = ({ product }) => {
 			  
 			  var config = {
 				method: 'post',
-				url: 'http://localhost:3000/api/wishlist/remove',
+				url: 'https://sugarcosmetucs.vercel.app/api/wishlist/remove',
 				headers: { 
 				  'token': d.primaryToken, 
 				  'Content-Type': 'application/json'

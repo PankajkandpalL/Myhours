@@ -14,7 +14,7 @@ const LoginPage = ()=>{
     React.useEffect(()=>{
         axios({
             method:'GET',
-            url:"http://localhost:3000/api/wishlist/get",
+            url:"htthttps://sugarcosmetucs.vercel.app/api/wishlist/get",
             headers:{
                 'token':`${JSON.parse(localStorage.getItem('token')).primaryToken}`
             }

@@ -108,7 +108,7 @@ const CartPage = (  ) => {
 
     try{
 
-      await axios.delete("http://localhost:3000/api/cart/delete", {
+      await axios.delete("https://sugarcosmetucs.vercel.app/api/cart/delete", {
         headers : {
           token : d.primaryToken
         },
@@ -138,7 +138,7 @@ const CartPage = (  ) => {
     
     var config = {
       method: 'patch',
-      url: 'http://localhost:3000/api/cart/patch',
+      url: 'https://sugarcosmetucs.vercel.app/api/cart/patch',
       headers: { 
         'token': d.primaryToken,
         'Content-Type': 'application/json'
@@ -168,7 +168,7 @@ const CartPage = (  ) => {
     
     var config = {
       method: 'post',
-      url: 'http://localhost:3000/api/cart/post',
+      url: 'https://sugarcosmetucs.vercel.app/api/cart/post',
       headers: { 
         'token': d.primaryToken , 
         'Content-Type': 'application/json'

@@ -20,7 +20,7 @@ const WishList = ()=>{
 
         axios({
             method:'GET',
-            url:"http://localhost:3000/api/wishlist/get",
+            url:"https://sugarcosmetucs.vercel.app/api/wishlist/get",
             headers:{
                 token : d.primaryToken
             }
@@ -42,7 +42,7 @@ const WishList = ()=>{
         
         var config = {
           method: 'post',
-          url: 'http://localhost:3000/api/cart/post',
+          url: 'https://sugarcosmetucs.vercel.app/api/cart/post',
           headers: { 
             'token': d.primaryToken , 
             'Content-Type': 'application/json'

@@ -46,7 +46,7 @@ const matches700 = useMediaQuery('(min-width:700px)');
     if(matches700){
       setLength(3)
     }
-    axios.get("http://localhost:3000/api/product/all").then((r) => {
+    axios.get("https://sugarcosmetucs.vercel.app/api/product/all").then((r) => {
       setList(r.data.products);
       setShow(true);
     });

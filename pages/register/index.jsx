@@ -62,7 +62,7 @@ export default function Login() {
 
     try {
       let data = await axios.post(
-        "http://localhost:3000/api/registration/user",
+        "https://sugarcosmetucs.vercel.app/api/registration/user",
         obj
       );
       localStorage.setItem("message", data.data.message);
@@ -114,7 +114,7 @@ export default function Login() {
 
     try {
       let data = await axios.post(
-        "http://localhost:3000/api/registration/mobile",
+        "https://sugarcosmetucs.vercel.app/api/registration/mobile",
         obj
       );
 
