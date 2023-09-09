@@ -1,7 +1,7 @@
 import { Button, Checkbox, InputAdornment, TextField } from "@mui/material";
 import Box from "@mui/material/Box";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { app } from "../../utils/firebase";
 import {
   getAuth,
@@ -11,6 +11,16 @@ import {
 import { useRouter } from "next/router";
 import axios from "axios";
 import { useSession, signIn, signOut } from "next-auth/react";
+
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert, { AlertProps } from '@mui/material/Alert';
+
+const Alert = React.forwardRef(function Alert(
+  props,
+  ref,
+) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 const src = "https://media.sugarcosmetics.com/upload/authSIe2.jpg";
 const hiSrc = "https://media.sugarcosmetics.com/upload/Hi!.png";
@@ -22,6 +32,7 @@ export default function Login() {
   const [otp, setOtp] = useState("");
   const [toggle, setToggle] = useState(false);
   const [message, setMessage] = useState(false);
+  const [alert, setAlert] = useState({state:false,message:"",type:""});
   const [userObj, setUserObj] = useState({
     first: "",
     last: "",
@@ -62,7 +73,7 @@ export default function Login() {
 
     try {
       let data = await axios.post(
-        "https://sugarcosmetucs.vercel.app/api/registration/user",
+        "https://sugar-cosmetics-clone-mu.vercel.app/api/registration/user",
         obj
       );
       localStorage.setItem("message", data.data.message);
@@ -76,45 +87,44 @@ export default function Login() {
 
   const router = useRouter();
 
-  let configureCaptcha = () => {
-    const auth = getAuth();
-    window.recaptchaVerifier = new RecaptchaVerifier(
-      "sign-in-button",
-      {
-        size: "invisible",
-        callback: (response) => {
-          onSignInSubmit();
-        },
-        defaultCountry: "IN",
-      },
-      auth
-    );
-  };
-
   let onSignInSubmit = () => {
-    configureCaptcha();
     const phoneNumber = "+91" + Number;
     console.log(phoneNumber);
-    const appVerifier = window.recaptchaVerifier;
 
     const auth = getAuth();
+    if(!window.recaptchaVerifier){
+      window.recaptchaVerifier = new RecaptchaVerifier(
+        "sign-in-button",
+        {
+          size: "invisible",
+          callback: (response) => {
+            onSignInSubmit();
+          },
+          defaultCountry: "IN",
+        },
+        auth
+      );
+    }    
+    const appVerifier = window.recaptchaVerifier;
     signInWithPhoneNumber(auth, phoneNumber, appVerifier)
       .then((confirmationResult) => {
         window.confirmationResult = confirmationResult;
+        // console.log(confirmationResult,'confirmationResult')
         setToggle(true);
 
       })
       .catch((error) => {
-        console.log("Sms Not sent");
+        appVerifier.clear();
+        console.log("Sms Not sent",error);
       });
   };
+  
 
   let addUser = async () => {
     let obj = { mobile: Number };
-
     try {
       let data = await axios.post(
-        "https://sugarcosmetucs.vercel.app/api/registration/mobile",
+        "https://sugar-cosmetics-clone-mu.vercel.app/api/registration/mobile",
         obj
       );
 
@@ -148,10 +158,15 @@ export default function Login() {
       .then((result) => {
         const user = result.user;
         console.log(JSON.stringify(user));
-        alert("Verified");
+        // alert("Verified");
+        setAlert({state:true,message:"Verified Successfully",type:"success"})
+        setTimeout(()=>setAlert({...alert,state:false}),2000)
+        
       })
       .catch((error) => {
-        alert("bad verification code");
+        // alert("bad verification code");
+        setAlert({state:true,message:"Bad Verification Code",type:"error"})
+        setTimeout(()=>setAlert({...alert,state:false}),2000)
       });
   };
 
@@ -226,6 +241,7 @@ export default function Login() {
                   label="Enter Mobile Number"
                   id="outlined-start-adornment"
                   sx={{ m: 1, width: "382px" }}
+                  value={Number}
                   onChange={(e) => setNumber(e.target.value)}
                   InputProps={{
                     startAdornment: (
@@ -239,6 +255,7 @@ export default function Login() {
                   label="Enter OTP"
                   sx={{ m: 1, width: "382px" }}
                   variant="outlined"
+                  value={otp}
                   onChange={(e) => setOtp(e.target.value)}
                 />
               )}
@@ -533,6 +550,7 @@ export default function Login() {
             </Box>
           </Box>
         )}
+        {alert.state ? <Alert sx={{ width: '97vw', position:"absolute",top:4,left:0, textAlign:"center" }} severity={alert.type} >{alert.message}</Alert>: ""}
       </Box>
     </Box>
   );

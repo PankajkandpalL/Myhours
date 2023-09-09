@@ -17,7 +17,7 @@
     "argon2": "^0.29.1",
     "axios": "^0.27.2",
     "fast-two-sms": "^3.0.0",
-    "firebase": "^9.10.0",
+    "firebase": "^9.23.0",
     "googleapis": "^108.0.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.6.2",
